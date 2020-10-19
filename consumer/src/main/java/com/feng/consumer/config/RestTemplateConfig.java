@@ -8,6 +8,7 @@ import org.springframework.http.client.SimpleClientHttpRequestFactory;
 import org.springframework.web.client.RestTemplate;
 
 /**
+ * RestTemplate配置类
  * Feng, Ge 2020-10-10 23:04
  */
 @Configuration
