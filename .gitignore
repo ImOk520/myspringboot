@@ -1,7 +1,6 @@
 HELP.md
 /target/
 !.mvn/wrapper/maven-wrapper.jar
-target
 
 ### IntelliJ IDEA ###
 .idea
@@ -11,3 +10,7 @@ target
 
 
 
+/myspringcloud-provider-C/target/
+/myspringcloud-api/target/
+/consumer/target/
+/.idea/

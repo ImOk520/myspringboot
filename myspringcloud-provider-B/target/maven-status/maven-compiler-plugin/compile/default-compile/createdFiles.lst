@@ -1,0 +1,7 @@
+feng\ProviderB.class
+feng\service\DeptService.class
+feng\dao\DeptDao.class
+feng\controller\DeptController.class
+feng\config\RestTemplateConfig.class
+feng\controller\RestTemplateTestController.class
+feng\service\DeptServiceIml.class
