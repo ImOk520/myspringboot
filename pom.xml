@@ -14,6 +14,7 @@
         <module>myspringcloud-provider-C</module>
         <module>provider-A</module>
         <module>my-eureka</module>
+        <module>my-zuul</module>
     </modules>
 
     <packaging>pom</packaging>
