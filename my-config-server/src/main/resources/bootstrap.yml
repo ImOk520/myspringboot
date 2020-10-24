@@ -1,0 +1,9 @@
+
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/ImOk520/spring-cloud-config-center.git
+          default-label: main
+

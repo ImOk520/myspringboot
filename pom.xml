@@ -15,6 +15,8 @@
         <module>provider-A</module>
         <module>my-eureka</module>
         <module>my-zuul</module>
+        <module>my-config-server</module>
+        <module>my-config-client</module>
     </modules>
 
     <packaging>pom</packaging>

@@ -1,0 +1,10 @@
+# bootstrap.yml 系统级配置优先加载
+
+spring:
+  cloud:
+    config:
+      name: config-demo
+      profile: dev
+      label: main
+      uri: http://localhost:6666
+
