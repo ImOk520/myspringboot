@@ -17,6 +17,8 @@
         <module>my-zuul</module>
         <module>my-config-server</module>
         <module>my-config-client</module>
+        <module>my-eureka-another</module>
+        <module>my-eureka-another-two</module>
     </modules>
 
     <packaging>pom</packaging>

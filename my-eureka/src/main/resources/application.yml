@@ -4,12 +4,18 @@ server:
 spring:
   application:
     name: my-eureka
+  security: # eureka管理后台安全认证
+    user:
+      name: ImOK #用户名
+      password: 123456 #密码
 
 eureka:
   instance:
-    hostname: localhost
+    hostname: configserver-1.com
   client:
-    register-with-eureka: false
-    fetch-registry: false
+    register-with-eureka: false # 不注册自己
+    fetch-registry: false # 注册中心的职责就是维护服务实例，它不需要去检索服务，服务检索关闭
     service-url:
-      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+      defaultZone: http://configserver-2.com:9006/eureka/,http://configserver-3.com:9008/eureka/
+  server:
+    enableSelfPreservation: false # 关闭自我保护模式

@@ -1,0 +1,19 @@
+server:
+  port: 9006
+
+spring:
+  application:
+    name: my-eureka-another
+#  security: # eureka管理后台安全认证
+#    user:
+#      name: ImOK #用户名
+#      password: 123456 #密码
+
+eureka:
+  instance:
+    hostname: configserver-2.com
+  client:
+    register-with-eureka: false # 不注册自己
+    fetch-registry: false # 注册中心的职责就是维护服务实例，它不需要去检索服务，服务检索关闭
+    service-url:
+      defaultZone: http://configserver-1.com:9000/eureka/,http://configserver-3.com:9008/eureka/
