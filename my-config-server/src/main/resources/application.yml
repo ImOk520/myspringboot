@@ -5,3 +5,7 @@ eureka:
   client:
     service-url:
       defaultZone: http://ImOK:123456@localhost:9000/eureka/
+
+spring:
+  application:
+    name: config-server
