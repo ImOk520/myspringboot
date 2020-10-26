@@ -75,5 +75,4 @@ public class HystrixDemoController {
         }
         return "test_" + id;
     }
-
 }

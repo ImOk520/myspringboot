@@ -1,5 +1,6 @@
 package com.feng.client;
 
+import com.feng.config.FeignConfig;
 import com.feng.pojo.Dept;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Component;
@@ -14,7 +15,7 @@ import java.util.List;
  * Feng, Ge 2020-10-20 14:16
  */
 @Component
-@FeignClient(value = "provider")
+@FeignClient(value = "provider", configuration = FeignConfig.class)
 public interface DeptClient {
 
     @PostMapping("/dept/add")
@@ -25,5 +26,4 @@ public interface DeptClient {
 
     @GetMapping("/dept/getAll")
     List<Dept> getAll();
-
 }
