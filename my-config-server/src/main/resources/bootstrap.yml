@@ -1,4 +1,3 @@
-
 spring:
   cloud:
     config:
@@ -6,4 +5,3 @@ spring:
         git:
           uri: https://github.com/ImOk520/spring-cloud-config-center.git
           default-label: main
-

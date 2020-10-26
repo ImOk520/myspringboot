@@ -1,12 +1,7 @@
-
 server:
   port: 6666
-spring:
-  application:
-    name: config-server
 
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:9000/eureka/
-
+      defaultZone: http://ImOK:123456@localhost:9000/eureka/
