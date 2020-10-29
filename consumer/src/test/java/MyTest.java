@@ -3,6 +3,7 @@ import org.junit.Test;
 import org.springframework.http.converter.json.GsonBuilderUtils;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -13,12 +14,12 @@ import java.util.stream.Collectors;
 public class MyTest {
 
     @Test
-    public void test(){
+    public void test() {
         System.out.println("ppp");
     }
 
     @Test
-    public void test1(){
+    public void test1() {
         List<A> list = new ArrayList<>();
         list.add(new A("李逵"));
         list.add(new A("张飞"));
@@ -34,52 +35,63 @@ public class MyTest {
 
         System.out.println("1==================================");
         list.forEach(diagnosisVO ->
-            {
-                List<A> result1 = list2.stream().parallel().filter(df ->
-                        df.getName().equals(diagnosisVO.getName())
-                ).collect(Collectors.toList());
-                System.out.println(result1);
-            }
+                {
+                    List<A> result1 = list2.stream().parallel().filter(df ->
+                            df.getName().equals(diagnosisVO.getName())
+                    ).collect(Collectors.toList());
+                    System.out.println(result1);
+                }
         );
 
         System.out.println("2==================================");
         list.forEach(diagnosisVO ->
-            {
-                list2.stream().parallel().filter(df ->
-                        df.getName().equals(diagnosisVO.getName())
-                ).forEach(a -> {
-                    System.out.println(a);
-                });
-            }
+                {
+                    list2.stream().parallel().filter(df ->
+                            df.getName().equals(diagnosisVO.getName())
+                    ).forEach(a -> {
+                        System.out.println(a);
+                    });
+                }
         );
 
         System.out.println("3==================================");
         list.forEach(diagnosisVO ->
-            {
-                Optional<A> first = list2.stream().filter(df ->
-                        df.getName().equals(diagnosisVO.getName())
-                ).findFirst();
-                System.out.println(first);
-            }
+                {
+                    Optional<A> first = list2.stream().filter(df ->
+                            df.getName().equals(diagnosisVO.getName())
+                    ).findFirst();
+                    System.out.println(first);
+                }
         );
 
         System.out.println("4==================================");
         list.forEach(diagnosisVO ->
-            list2.stream().filter(df ->
-                df.getName().equals(diagnosisVO.getName())
-            ).findFirst().ifPresent(a ->
-                System.out.println(a)
-            )
+                list2.stream().filter(df ->
+                        df.getName().equals(diagnosisVO.getName())
+                ).findFirst().ifPresent(a ->
+                        System.out.println(a)
+                )
         );
 
         System.out.println("5==================================");
         list.forEach(diagnosisVO ->
-            list2.stream().filter(df ->
-                df.getName().equals(diagnosisVO.getName())
-            ).findFirst().ifPresent(dfs ->
-                System.out.println(dfs))
+                list2.stream().filter(df ->
+                        df.getName().equals(diagnosisVO.getName())
+                ).findFirst().ifPresent(dfs ->
+                        System.out.println(dfs))
         );
 
     }
 
+    @Test
+    public void test2() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.DAY_OF_YEAR, 1);
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+        Long timeOut = ((calendar.getTimeInMillis()-System.currentTimeMillis()) / 1000);
+        System.out.println("timeOut:" + timeOut + "秒");
+    }
 }
