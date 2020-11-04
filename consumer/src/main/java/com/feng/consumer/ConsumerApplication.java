@@ -24,7 +24,6 @@ public class ConsumerApplication {
         SpringApplication.run(ConsumerApplication.class, args);
     }
 
-    //加入如下配置
     @Bean({"threadPoolTaskExecutor", "webMvcAsyncTaskExecutor"})
     public ThreadPoolTaskExecutor threadPoolTaskExecutor() {
         return new ThreadPoolTaskExecutor();
