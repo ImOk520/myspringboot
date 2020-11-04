@@ -16,7 +16,7 @@ public class DESUtil {
 
     private final static String DES = "DES";//方式
     private final static String ENCODE = "UTF-8";//编码
-    private final static String defaultKey = "cmp_security_key";//8的倍数秘钥
+    private final static String defaultKey = "changchun_script";//8的倍数秘钥
 
 
     /**
@@ -142,7 +142,7 @@ public class DESUtil {
     }
 
     public static void main(String[] args) throws Exception {
-        decrypt("bS3/DHwdEtNdTFHlnZCWm2Fo52ZYDMcwaf0S2C+6MHrAVm+FvZzwfOr560L+Pep3Zn2YZSHtnO4/ksFxNWQumvcL4Xa0LRdNT8toQXlCrocOqwoIcWWrzHQS6W5CJwAdY1SyMxl8NQOOL9yu/GohggXeXLRo4LjFPiqJGu69wW4MxbLgcnkihZyqnr/1LiHbKaNYrrAC2oOJCHXhvQuBappzMr5GiTmKl20f2PgLNDKqLNevGBlXP4SAKyPwntW2gXfx43fDhW5qzHVRRS7NW+aeG71FFNGvmYuqYv6tsMMHKXBsHYRLYHxh4awlSxGfLtxnWIbpDlwfNf9gBq3j+xuBVrBBr/fO4HpKbqIZq3mnDeiVLuwOoZdtH9j4CzQyqizXrxgZVz8gRBFuRCjuRYF38eN3w4Vuasx1UUUuzVvmnhu9RRTRr5mLqmL+rbDDBylwbB2ES2B8YeGsJUsRn1Ceo/sl+mGyHzX/YAat4/szKW7ju0bdChMjD6yVECzUKgHmPMEkj2c=");
-        System.out.println("dwsddsdsd====:" + decrypt("bS3/DHwdEtNdTFHlnZCWm2Fo52ZYDMcwaf0S2C+6MHrAVm+FvZzwfOr560L+Pep3Zn2YZSHtnO4/ksFxNWQumvcL4Xa0LRdNT8toQXlCrocOqwoIcWWrzHQS6W5CJwAdY1SyMxl8NQOOL9yu/GohggXeXLRo4LjFPiqJGu69wW4MxbLgcnkihZyqnr/1LiHbKaNYrrAC2oOJCHXhvQuBappzMr5GiTmKl20f2PgLNDKqLNevGBlXP4SAKyPwntW2gXfx43fDhW5qzHVRRS7NW+aeG71FFNGvmYuqYv6tsMMHKXBsHYRLYHxh4awlSxGfLtxnWIbpDlwfNf9gBq3j+xuBVrBBr/fO4HpKbqIZq3mnDeiVLuwOoZdtH9j4CzQyqizXrxgZVz8gRBFuRCjuRYF38eN3w4Vuasx1UUUuzVvmnhu9RRTRr5mLqmL+rbDDBylwbB2ES2B8YeGsJUsRn1Ceo/sl+mGyHzX/YAat4/szKW7ju0bdChMjD6yVECzUKgHmPMEkj2c="));
+        String deResult = decrypt("hhAos5l52rFt4fTPYk6YAwtavBNx5/gPkjAMphQjlqdYmkAfivuPLz9l4JSRFb27n3DVDsa6wZCbGo6NfOYc3Cg7G54bEcH+QwSOgoj2QlP8Msm5R1Gwd8u07q+NCqzSn93pAteTsdVf3Vz7mJG8IfT6YR6RwSwF+9cOu+qmHKmf8bfCh4EF5nlqU9negPDGP77sXQl1329M13a8dbHqp5m04GhK/SjmkWZgV013IR07MKs7qWFM0kRiREm4c5eQh7vjSJCP6Er63uu9D1X3VYM4flDQSqknaJUTwYnJJ03BIGRXB1UVDx4IlTa+8YAQ77UyDJZziUxeNacM4JFfbpvTZDhpZ3qlpr2BBFzczcOtCvMyuejAvpFmYFdNdyEdOzCrO6lhTNLCBYPx8Gq9qoe740iQj+hK+t7rvQ9V91WDOH5Q0EqpJ2iVE8GJySdNke9Cmpj0kz8PQjlVLu9BLpFmYFdNdyEd7efJ/utv+8DtaDhbP+UGh5ya66t9gxz7BMDmsESkCTs==");
+        System.out.println("dwsddsdsd====:" + deResult);
     }
 }
