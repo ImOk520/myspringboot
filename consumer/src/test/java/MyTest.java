@@ -1,5 +1,7 @@
 import entity.A;
 import org.junit.Test;
+import org.mapstruct.Mapper;
+import org.mapstruct.factory.Mappers;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
