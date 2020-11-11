@@ -6,12 +6,15 @@ import lombok.Data;
  * Feng, Ge 2020-10-20 17:12
  */
 @Data
-public class A {
+public class B {
 
     private String name;
 
-    public A(String name) {
+    private Integer age;
+
+    public B(String name, Integer age) {
         this.name = name;
+        this.age = age;
     }
 
 }
