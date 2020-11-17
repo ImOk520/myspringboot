@@ -111,5 +111,37 @@ public class MyTest {
         System.out.println("【decoderUrl:】" + decoderUrl);
     }
 
+    /**
+     * URL编解码
+     * Feng, Ge
+     */
+    @Test
+    public void test4() {
+        List<A> list = new ArrayList<>();
+        list.add(new A("李逵"));
+        list.add(new A("张飞"));
+        list.add(new A("宋江"));
+        list.add(new A("鲁智深"));
+        list.add(new A("秦明"));
+        List<A> list2 = new ArrayList<>();
+        list2.add(new A("李逵"));
+        list2.add(new A("花荣"));
+        list2.add(new A("宋江"));
+        list2.add(new A("扈三娘"));
+        list2.add(new A("秦明"));
+        for (A a : list) {
+            boolean flag = false;
+            for (A aa : list2) {
+                if (a.getName().equals(aa.getName())) {
+                    System.out.println(aa.getName());
+                    flag = true;
+                }
+            }
+            if (flag) {
+                continue;
+            }
+        }
+    }
+
 
 }

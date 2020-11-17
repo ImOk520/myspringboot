@@ -1,5 +1,6 @@
 package lambda;
 
+import com.alibaba.druid.support.json.JSONUtils;
 import com.alibaba.fastjson.JSONObject;
 import entity.B;
 import org.junit.Test;
@@ -204,6 +205,31 @@ public class MyLambdaTest {
         System.out.println(groupmap1);
         Object mul1 = JSONObject.toJSON(groupmap1);
         System.out.println(mul1);
+
+        System.out.println("===================Map分组====================");
+        List<Map<String, Object>> resultList = new ArrayList<>();
+        Map<String, Object> map1 = new HashMap<>();
+        map1.put("name", "ok");
+        map1.put("age", 6);
+        Map<String, Object> map2 = new HashMap<>();
+        map2.put("name", "okok");
+        map2.put("age", 66);
+        Map<String, Object> map3 = new HashMap<>();
+        map3.put("name", "okokok");
+        map3.put("age", 666);
+        Map<String, Object> map4 = new HashMap<>();
+        map4.put("name", "ok");
+        map4.put("age", 16);
+        resultList.add(map1);
+        resultList.add(map2);
+        resultList.add(map3);
+        resultList.add(map4);
+        Map<String, List<Map<String, Object>>> result = resultList.stream().collect(Collectors.groupingBy(MyLambdaTest::getGroupKey));
+        System.out.println(JSONUtils.toJSONString(result));
+    }
+
+    private static String getGroupKey (Map<String, Object> map) {
+        return map.get("name").toString();
     }
 
     /**
@@ -242,6 +268,27 @@ public class MyLambdaTest {
                 .sorted(Comparator.comparing(B::getAge).reversed()).forEach(e -> {
             System.out.println(e);
         });
+        System.out.println("=================Map比较排序======================");
+        List<Map<String, Object>> resultList = new ArrayList<>();
+        Map<String, Object> map1 = new HashMap<>();
+        map1.put("name", "ok");
+        map1.put("age", 6);
+        Map<String, Object> map2 = new HashMap<>();
+        map2.put("name", "okok");
+        map2.put("age", 66);
+        Map<String, Object> map3 = new HashMap<>();
+        map3.put("name", "okokok");
+        map3.put("age", 666);
+        resultList.add(map1);
+        resultList.add(map2);
+        resultList.add(map3);
+        Stream<Map<String, Object>> sorted = resultList.stream().sorted(Comparator.comparing(MyLambdaTest::comparedByAge).reversed());
+        List<Map<String, Object>> collect = sorted.collect(Collectors.toList());
+        System.out.println(JSONUtils.toJSONString(collect));
+    }
+
+    private static long comparedByAge(Map<String, Object> map) {
+        return Long.parseLong(map.get("age").toString());
     }
 
     /**

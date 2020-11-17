@@ -21,7 +21,8 @@ public class DeptServiceIml implements DeptService{
     }
 
     public Dept queryById(Long deptno) {
-        return deptDao.queryById(deptno);
+        Dept dept = deptDao.queryById(deptno);
+        return dept;
     }
 
     public List<Dept> queryAll() {
