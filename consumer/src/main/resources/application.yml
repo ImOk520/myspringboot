@@ -13,3 +13,16 @@ eureka:
   client:
     service-url:
       defaultZone: http://ImOK:123456@configserver-1.com:9000/eureka/,http://configserver-2.com:9006/eureka/,http://configserver-3.com:9008/eureka/
+
+
+xxl:
+  job:
+    accessToken:
+    executor:
+      appname: demo
+      ip:
+      logpath: /data/applogs/xxl-job/jobhandler
+      logretentiondays: -1
+      port: 9999
+    admin:
+      addresses: http://localhost:8080/xxl-job-admin

@@ -3,12 +3,17 @@ package lambda;
 import com.alibaba.druid.support.json.JSONUtils;
 import com.alibaba.fastjson.JSONObject;
 import entity.B;
+import org.apache.commons.lang.StringUtils;
 import org.junit.Test;
 
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+/**
+ * Lambda 示例代码
+ * Feng, Ge 2020年01月16日14:42:43
+ */
 
 /**
  * （1）Intermediate（中间操作）：
@@ -57,6 +62,16 @@ public class MyLambdaTest {
         List<String> list = StreamAPI.getStringList();
         Stream<String> stream = list.stream().filter(element -> !element.contains("8"));
         stream.forEach(System.out::println);
+
+        boolean hasDiagInfo = false;
+        if (!org.springframework.util.CollectionUtils.isEmpty(StreamAPI.getBNullList())) {
+            List<B> diagnoseInfos = StreamAPI.getBNullList().stream().filter(dia -> StringUtils.isNotEmpty(dia.getName())).collect(Collectors.toList());
+            if (diagnoseInfos != null && diagnoseInfos.size() > 0){
+                hasDiagInfo = true;
+            }
+            System.out.println(diagnoseInfos);
+            System.out.println(hasDiagInfo);
+        }
     }
 
     @Test

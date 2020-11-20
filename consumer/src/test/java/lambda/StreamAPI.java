@@ -41,4 +41,17 @@ public class StreamAPI {
         list.add(new B("好看", 9));
         return list;
     }
+
+    public static List<B> getBNullList(){
+        List<B> list = new ArrayList<>();
+        list.add(new B("", 16));
+        list.add(new B("", 3));
+        list.add(new B("小6", 6));
+        list.add(new B("", 9));
+        list.add(new B("", 16));
+        list.add(new B("", 3));
+        list.add(new B("", 6));
+        list.add(new B("", 9));
+        return list;
+    }
 }
