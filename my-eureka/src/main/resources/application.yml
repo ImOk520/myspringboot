@@ -15,7 +15,7 @@ eureka:
   client:
     register-with-eureka: false # 不注册自己
     fetch-registry: false # 注册中心的职责就是维护服务实例，它不需要去检索服务，服务检索关闭
-    service-url:
-      defaultZone: http://configserver-2.com:9006/eureka/,http://configserver-3.com:9008/eureka/
+#    service-url:
+#      defaultZone: http://configserver-2.com:9006/eureka/,http://configserver-3.com:9008/eureka/
   server:
     enableSelfPreservation: false # 关闭自我保护模式

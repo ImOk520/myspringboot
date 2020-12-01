@@ -8,11 +8,19 @@ spring:
     user:
       name: ImOK #用户名
       password: 123456 #密码
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/db01?useUnicode=true&characterEncoding=utf-8
+    username: root
+    password: 123456
+    xa:
+      properties:
+        useInformationSchema : true # 可以获取tables注释信息
 
 eureka:
   client:
     service-url:
-      defaultZone: http://ImOK:123456@configserver-1.com:9000/eureka/,http://configserver-2.com:9006/eureka/,http://configserver-3.com:9008/eureka/
+      defaultZone: http://ImOK:123456@configserver-1.com:9000/eureka/
 
 
 xxl:
@@ -26,3 +34,4 @@ xxl:
       port: 9999
     admin:
       addresses: http://localhost:8080/xxl-job-admin
+
