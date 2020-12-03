@@ -11,7 +11,8 @@ spring:
 
 eureka:
   instance:
-    hostname: configserver-1.com
+#    hostname: configserver-1.com
+    hostname: localhost
   client:
     register-with-eureka: false # 不注册自己
     fetch-registry: false # 注册中心的职责就是维护服务实例，它不需要去检索服务，服务检索关闭

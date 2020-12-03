@@ -1,3 +1,4 @@
+import cn.hutool.json.JSONUtil;
 import cn.smallbun.screw.core.Configuration;
 import cn.smallbun.screw.core.engine.EngineConfig;
 import cn.smallbun.screw.core.engine.EngineFileType;
@@ -204,7 +205,10 @@ public class MyTest {
                 .ignoreTableSuffix(ignoreSuffix).build();
     }
 
-
+    @Test
+    public void test6() {
+        System.out.println(JSONUtil.isJson("{'111':'999'}"));
+    }
 
 
 }

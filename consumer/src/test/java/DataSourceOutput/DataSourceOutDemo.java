@@ -15,6 +15,7 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
+ * 数据库文档信息生成导出
  * Feng, Ge 2020/11/30 0030 17:23
  */
 public class DataSourceOutDemo {
