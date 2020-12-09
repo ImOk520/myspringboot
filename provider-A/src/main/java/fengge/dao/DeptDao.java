@@ -1,4 +1,4 @@
-package feng.dao;
+package fengge.dao;
 
 import com.feng.pojo.Dept;
 import org.apache.ibatis.annotations.Mapper;
@@ -16,6 +16,8 @@ public interface DeptDao {
     boolean addDept(Dept dept);
 
     Dept queryById(Long deptno);
+
+    int update(Long deptno);
 
     List<Dept> queryAll();
 

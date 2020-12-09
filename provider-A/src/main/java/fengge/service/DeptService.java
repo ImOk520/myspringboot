@@ -1,4 +1,4 @@
-package feng.service;
+package fengge.service;
 
 import com.feng.pojo.Dept;
 
@@ -13,6 +13,10 @@ public interface DeptService {
 
      Dept queryById(Long deptno);
 
+     void update(Long deptno);
+
      List<Dept> queryAll();
+
+     void testTransaction(Long deptno);
 
 }

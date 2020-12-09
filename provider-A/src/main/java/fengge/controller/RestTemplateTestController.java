@@ -1,4 +1,4 @@
-package feng.controller;
+package fengge.controller;
 
 import com.feng.pojo.Dept;
 import lombok.extern.slf4j.Slf4j;

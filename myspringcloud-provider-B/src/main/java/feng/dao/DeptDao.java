@@ -17,6 +17,8 @@ public interface DeptDao {
 
     Dept queryById(Long deptno);
 
+    int update(Long deptno);
+
     List<Dept> queryAll();
 
 }

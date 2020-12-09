@@ -1,4 +1,4 @@
-package feng;
+package fengge;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -13,4 +13,9 @@ public class ProviderA {
     public static void main(String[] args) {
         SpringApplication.run(ProviderA.class, args);
     }
+
+//    @Bean
+//    public PlatformTransactionManager transactionManager(DataSource dataSource) {
+//        return new DataSourceTransactionManager(dataSource);
+//    }
 }

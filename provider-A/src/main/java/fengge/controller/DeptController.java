@@ -1,7 +1,7 @@
-package feng.controller;
+package fengge.controller;
 
 import com.feng.pojo.Dept;
-import feng.service.DeptService;
+import fengge.service.DeptService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
