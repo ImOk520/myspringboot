@@ -192,7 +192,6 @@
             <artifactId>spring-jdbc</artifactId>
         </dependency>
         <!-- 数据库文档导出end -->
-
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
@@ -220,6 +219,16 @@
             <groupId>org.jodd</groupId>
             <artifactId>jodd</artifactId>
             <version>3.3.8</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-redis</artifactId>
+            <version>1.4.1.RELEASE</version>
+        </dependency>
+        <!-- lettuce pool 缓存连接池-->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-pool2</artifactId>
         </dependency>
     </dependencies>
 </project>

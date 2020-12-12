@@ -17,10 +17,21 @@ spring:
       properties:
         useInformationSchema : true # 可以获取tables注释信息
 
+  redis:
+    host: 49.2·34.28.149
+    password: gefeng
+    lettuce:
+      pool:
+        max-active: 8
+        max-idle: 8
+        max-wait: -1
+        min-idle: 0
+    port: 6379
+
 eureka:
   client:
     service-url:
-      defaultZone: http://ImOK:123456@49.234.28.149:9000/eureka/
+      defaultZone: http://ImOK:123456@49.2·34.28.149:9000/eureka/
   instance:
     instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port}
     preferIpAddress: true # 鼠标移动到服务名上时，跳转连接是否显示IP
@@ -36,4 +47,7 @@ xxl:
       port: 9999
     admin:
       addresses: http://localhost:8080/xxl-job-admin
+
+
+
 

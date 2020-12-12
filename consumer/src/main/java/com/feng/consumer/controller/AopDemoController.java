@@ -2,7 +2,6 @@ package com.feng.consumer.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.feng.consumer.DTO.CarDTO;
-import com.google.gson.JsonObject;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
