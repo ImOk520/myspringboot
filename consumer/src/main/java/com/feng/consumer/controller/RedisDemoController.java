@@ -23,7 +23,7 @@ public class RedisDemoController {
     public void test() {
         CarPO carPO = new CarPO();
         carPO.setId(1);
-        carPO.setBrand("66");
+        carPO.setBrand("666");
         redisUtil.set("car", carPO);
     }
 
