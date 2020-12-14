@@ -8,7 +8,7 @@ spring:
 eureka:
   client:
     service-url:
-      defaultZone: http://ImOK:123456@localhost:9000/eureka/
+      defaultZone: http://ImOK:123456@49.234.28.149:9000/eureka/
 
 zuul:
   routes:
