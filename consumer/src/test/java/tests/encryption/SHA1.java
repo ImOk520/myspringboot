@@ -1,4 +1,4 @@
-package encryption;
+package tests.encryption;
 
 /**
  * Feng, Ge 2020-11-04 16:32

@@ -1,4 +1,4 @@
-package DataSourceOutput;
+package tests.DataSourceOutput;
 
 import cn.smallbun.screw.core.Configuration;
 import cn.smallbun.screw.core.engine.EngineConfig;

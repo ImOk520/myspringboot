@@ -1,4 +1,4 @@
-package encryption;
+package tests.encryption;
 
 import org.apache.commons.codec.binary.Base64;
 

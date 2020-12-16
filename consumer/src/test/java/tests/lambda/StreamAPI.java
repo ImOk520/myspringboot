@@ -1,6 +1,5 @@
-package lambda;
+package tests.lambda;
 
-import entity.A;
 import entity.B;
 
 import java.util.ArrayList;

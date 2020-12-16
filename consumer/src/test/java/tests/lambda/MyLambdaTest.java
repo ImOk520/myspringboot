@@ -1,4 +1,4 @@
-package lambda;
+package tests.lambda;
 
 import com.alibaba.druid.support.json.JSONUtils;
 import com.alibaba.fastjson.JSONObject;
