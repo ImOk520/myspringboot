@@ -1,15 +1,13 @@
 package fengge.controller;
 
-import com.feng.pojo.Dept;
 import fengge.dao.DeptDao;
 import fengge.service.DeptService;
-import fengge.service.DeptServiceIml;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.io.*;
 
 /**
  * Feng, Ge 2020-10-13 20:32
@@ -30,10 +28,11 @@ public class TransactionController {
      * Feng, Ge
      */
     @PostMapping("/test1")
-    @Transactional(rollbackFor = Exception.class)
-    public void test1(Long deptno) {
+    @Transactional
+    public void test1(Long deptno) throws FileNotFoundException {
         deptService.update(deptno);
-        int i = 10/0;
+        File file = new File("d:\\data.txt");
+        FileInputStream input = new FileInputStream(file);
     }
 
     /**
@@ -50,6 +49,13 @@ public class TransactionController {
             log.info("ok_ok_ok");
             e.printStackTrace();
         }
+        System.out.println("okokok");
+        test(deptno);
+    }
+
+    private void test(Long i){
+        long h = i + 10;
+        System.out.println("【ok】" + h);
     }
 
     /**
@@ -62,4 +68,13 @@ public class TransactionController {
         int i = 10/0;
     }
 
+    /**
+     * @Transactional 即使加入spring管理，若被try catch处理了，也不会生效，数据仍被改变
+     * Feng, Ge
+     */
+    @PostMapping("/test4")
+    @Transactional(rollbackFor = Exception.class)
+    public void test4(Long deptno) {
+        deptService.update(deptno);
+    }
 }

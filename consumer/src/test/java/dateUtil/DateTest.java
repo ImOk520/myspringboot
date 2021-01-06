@@ -13,7 +13,7 @@ public class DateTest {
     public void test1() throws ParseException {
         String nowStr = DateUtil.getNowStr(DateUtil.STANDARD_FORMAT);
         String starter = "2020-01-01 00:00:01";
-        List<String> yearMonths = DateUtil.getMonthBetween(starter, "2021-05-01 00:00:01", DateUtil.SHORTER_FORMAT);
+        List<String> yearMonths = DateUtil.getMonthBetween(starter, "2022-05-01 00:00:01", DateUtil.SHORTER_FORMAT);
         log.info("【从{}开始到现在包含的所有月份：{}】", starter, yearMonths);
         yearMonths.stream().forEach(yearMonth -> {
             try {

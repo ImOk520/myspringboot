@@ -7,6 +7,7 @@ import cn.smallbun.screw.core.execute.DocumentationExecute;
 import cn.smallbun.screw.core.process.ProcessConfig;
 import com.feng.consumer.util.SpringContextUtil;
 import entity.A;
+import org.apache.commons.lang.StringUtils;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -14,6 +15,8 @@ import org.springframework.context.ApplicationContext;
 
 import javax.sql.DataSource;
 import java.io.UnsupportedEncodingException;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.util.*;
@@ -210,7 +213,19 @@ public class MyTest {
         System.out.println(JSONUtil.isJson("{'111':'999'}"));
     }
 
+    @Test
+    public void test7() {
+        System.out.println(Integer.parseInt("11"));
+        System.out.println(Integer.parseInt("null"));
+    }
 
+    @Test
+    public void test8() {
+        BigInteger i = BigInteger.valueOf(0);
+        String str = "8p";
+        System.out.println(StringUtils.isBlank(str) ? null : new BigDecimal(str));
+        System.out.println(i);
+    }
 
 
 }

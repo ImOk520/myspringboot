@@ -38,7 +38,7 @@ public class DeptServiceIml implements DeptService {
         update(deptno);
     }
 
-    @Transactional(propagation = Propagation.REQUIRES_NEW)
+//    @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void update(Long deptno) {
         deptDao.update(deptno);
     }
