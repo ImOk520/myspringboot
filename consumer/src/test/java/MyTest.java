@@ -19,6 +19,8 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -220,11 +222,16 @@ public class MyTest {
     }
 
     @Test
-    public void test8() {
+    public void test8() throws ParseException {
         BigInteger i = BigInteger.valueOf(0);
-        String str = "8p";
+        String str = "8";
         System.out.println(StringUtils.isBlank(str) ? null : new BigDecimal(str));
         System.out.println(i);
+        System.out.println(new BigInteger(""));
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");//注意月份是MM
+        Date date = simpleDateFormat.parse("2020/9/29 8:13:49");
+        System.out.println(date);   //Mon Sep 02 00:00:00 CST 2019
+        System.out.println(simpleDateFormat.format(date));  //2019-09-02
     }
 
 
