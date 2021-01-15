@@ -61,6 +61,12 @@ public class paralleCall {
         CompletableFuture<List<Long>> future6 = CompletableFuture.supplyAsync(() ->
                 addNumber(5000000L, 6000000L)
         );
+        CompletableFuture<List<Long>> future7 = CompletableFuture.supplyAsync(() ->
+                addNumber(6000000L, 7000000L)
+        );
+        CompletableFuture<List<Long>> future8 = CompletableFuture.supplyAsync(() ->
+                addNumber(7000000L, 8000000L)
+        );
         List resultList = new ArrayList();
         try {
             //获取并行执行任务结果
@@ -70,6 +76,8 @@ public class paralleCall {
             List<Long> list4 = future4.get();
             List<Long> list5 = future5.get();
             List<Long> list6 = future6.get();
+            List<Long> list7 = future7.get();
+            List<Long> list8 = future8.get();
             //放入结果
             resultList.addAll(list1);
             resultList.addAll(list2);
@@ -77,6 +85,8 @@ public class paralleCall {
             resultList.addAll(list4);
             resultList.addAll(list5);
             resultList.addAll(list6);
+            resultList.addAll(list7);
+            resultList.addAll(list8);
         } catch (Exception e) {
             System.out.println("异常：" + e);
         }
