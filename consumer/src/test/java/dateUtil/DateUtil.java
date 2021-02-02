@@ -126,6 +126,17 @@ public class DateUtil {
         return sp.format(d);
     }
 
+    /**
+     * 获取今天日期字符串
+     */
+    public static String getTodayDate(){
+        Date currentTime = new Date();
+        SimpleDateFormat sp=new SimpleDateFormat(SHORT_FORMAT);
+        return sp.format(currentTime);
+    }
+
+
+
 
 
 

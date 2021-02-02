@@ -19,6 +19,7 @@
         <module>my-config-client</module>
         <module>my-eureka-another</module>
         <module>my-eureka-another-two</module>
+        <module>ES_demo</module>
     </modules>
 
     <packaging>pom</packaging>

@@ -5,8 +5,11 @@ import cn.smallbun.screw.core.engine.EngineFileType;
 import cn.smallbun.screw.core.engine.EngineTemplateType;
 import cn.smallbun.screw.core.execute.DocumentationExecute;
 import cn.smallbun.screw.core.process.ProcessConfig;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.feng.consumer.util.SpringContextUtil;
 import entity.A;
+import entity.HisPrescriptionDemoVo;
 import org.apache.commons.lang.StringUtils;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -233,6 +236,22 @@ public class MyTest {
         System.out.println(date);   //Mon Sep 02 00:00:00 CST 2019
         System.out.println(simpleDateFormat.format(date));  //2019-09-02
     }
+
+    @Test
+    public void test9() {
+        List<HisPrescriptionDemoVo> list = new ArrayList<>();
+        HisPrescriptionDemoVo v = HisPrescriptionDemoVo.builder()
+                .diagnosticName("")
+                .id("")
+                .prescriptionId("")
+                .state("")
+                .totalsPrice(new BigDecimal("1"))
+                .build();
+        list.add(v);
+        System.out.println(JSONObject.toJSONString(list));
+    }
+
+
 
 
 }

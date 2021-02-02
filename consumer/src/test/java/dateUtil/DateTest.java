@@ -30,6 +30,8 @@ public class DateTest {
 
         String yesterdayDate = DateUtil.getYesterdayDate();
         log.info("【昨天：】{}", yesterdayDate);
+        String todayDate = DateUtil.getTodayDate();
+        log.info("【今天：】{}", todayDate);
     }
 
 
