@@ -1,16 +1,18 @@
-package feng.ge.es;
+package fengge;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
 /**
  * Feng, Ge 2020-10-08 22:05
  */
-//@EnableEurekaClient
-//@EnableDiscoveryClient
+@EnableEurekaClient
 @SpringBootApplication
-public class ConfigClientApplication {
+public class ESApp {
     public static void main(String[] args) {
-        SpringApplication.run(ConfigClientApplication.class, args);
+        SpringApplication.run(ESApp.class, args);
     }
+
+
 }

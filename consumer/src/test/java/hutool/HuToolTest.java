@@ -11,8 +11,15 @@ import cn.hutool.core.date.Month;
 import cn.hutool.core.date.TimeInterval;
 import cn.hutool.core.lang.Console;
 import cn.hutool.core.lang.Editor;
+import cn.hutool.core.lang.WeightRandom;
+import cn.hutool.core.net.NetUtil;
 import cn.hutool.core.util.ArrayUtil;
+import cn.hutool.core.util.EnumUtil;
 import cn.hutool.core.util.IdcardUtil;
+import cn.hutool.core.util.NumberUtil;
+import cn.hutool.core.util.ObjectUtil;
+import cn.hutool.core.util.RandomUtil;
+import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSONUtil;
 import cn.smallbun.screw.core.Configuration;
 import cn.smallbun.screw.core.engine.EngineConfig;
@@ -37,14 +44,19 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
@@ -393,6 +405,323 @@ public class HuToolTest {
         Console.log(birth2);
         Console.log(province);
         Console.log(province2);
+    }
+
+    /**********  数字工具-NumberUtil  **********************************************************************/
+    @ApiOperation("加减乘除——针对double类型做加减乘除")
+    @Test
+    public void test24() {
+        // 以上四种运算都会将double转为BigDecimal后计算，
+        // 解决float和double类型无法进行精确计算的问题。
+        // 这些方法常用于商业计算。
+        double d1= 8989.02;
+        float d2= (float) 8989.2;
+        double add = NumberUtil.add(d1, d2);
+        double sub = NumberUtil.sub(d1, d2);
+        double mul = NumberUtil.mul(d1, d2);
+        double div = NumberUtil.div(d1, d2);
+        Console.log(add);
+        Console.log(sub);
+        Console.log(mul);
+        Console.log(div);
+    }
+
+    @ApiOperation("保留小数")
+    @Test
+    public void test25() {
+        // NumberUtil.round 方法主要封装BigDecimal中的方法来保留小数，
+        // 返回double，这个方法更加灵活，可以选择四舍五入或者全部舍弃等模式。
+        double te1=123456.123456;
+        double te2=123456.128456;
+        BigDecimal bigDecimal1 = NumberUtil.round(te1, 4);
+        BigDecimal bigDecimal2 = NumberUtil.round(te2,4);
+        Console.log(bigDecimal1);
+        Console.log(bigDecimal2);
+        String s = NumberUtil.roundStr(te1,2);
+        String s1 = NumberUtil.roundStr(te2,2);
+        Console.log(s);
+        Console.log(s1);
+    }
+
+    @ApiOperation("double或long类型的数字做格式化操作")
+    @Test
+    public void test26() {
+        // NumberUtil.round 方法主要封装BigDecimal中的方法来保留小数，
+        // 返回double，这个方法更加灵活，可以选择四舍五入或者全部舍弃等模式。
+        double te1=123456.123456;
+        double te2=123456.128456;
+        BigDecimal bigDecimal1 = NumberUtil.round(te1, 4);
+        BigDecimal bigDecimal2 = NumberUtil.round(te2,4);
+        Console.log(bigDecimal1);
+        Console.log(bigDecimal2);
+        String s = NumberUtil.roundStr(te1,2);
+        String s1 = NumberUtil.roundStr(te2,2);
+        Console.log(s);
+        Console.log(s1);
+    }
+
+    @ApiOperation("double或long类型的数字做格式化操作")
+    @Test
+    public void test27() {
+        long c=299792458;//光速
+        String formatStr = NumberUtil.decimalFormat(",###", c);
+        Console.log(formatStr);
+        // 格式中主要以 # 和 0 两种占位符号来指定数字长度。0 表示如果位数不足则以 0 填充，# 表示只要有可能就把数字拉上这个位置。
+        // 0 -> 取一位整数
+        // 0.00 -> 取一位整数和两位小数
+        // 00.000 -> 取两位整数和三位小数
+        // # -> 取所有整数部分
+        // #.##% -> 以百分比方式计数，并取两位小数
+        // #.#####E0 -> 显示为科学计数法，并取五位小数
+        // ,### -> 每三位以逗号进行分隔，例如：299,792,458
+        // 光速大小为每秒,###米 -> 将格式嵌入文本
+        DecimalFormat df1 = new DecimalFormat("0.0");
+        DecimalFormat df2 = new DecimalFormat("#.#");
+        DecimalFormat df3 = new DecimalFormat("000.000");
+        DecimalFormat df4 = new DecimalFormat("###.###");
+        System.out.println(df1.format(12.34));
+        System.out.println(df2.format(12.34));
+        System.out.println(df3.format(12.34));
+        System.out.println(df4.format(12.34));
+        DecimalFormat format = new DecimalFormat("###,####.000");
+        System.out.println(format.format(111111123456.1227222));
+        Locale.setDefault(Locale.US);
+        DecimalFormat usFormat = new DecimalFormat("###,###.000");
+        System.out.println(usFormat.format(111111123456.1227222));
+        DecimalFormat addPattenFormat = new DecimalFormat();
+        addPattenFormat.applyPattern("##,###.000");
+        System.out.println(addPattenFormat.format(111111123456.1227));
+        DecimalFormat zhiFormat = new DecimalFormat();
+        zhiFormat.applyPattern("0.000E0000");
+        System.out.println(zhiFormat.format(10000));
+        System.out.println(zhiFormat.format(12345678.345));
+        DecimalFormat percentFormat = new DecimalFormat();
+        percentFormat.applyPattern("#0.000%");
+        System.out.println(percentFormat.format(0.3052222));
+    }
+
+    @ApiOperation("随机数")
+    @Test
+    public void test28() {
+        // 生成不重复随机数 根据给定的最小数字和最大数字，以及随机数的个数，产生指定的不重复的数组。
+        int[] ints = NumberUtil.generateRandomNumber(1, 100, 6);
+        Integer[] integers = NumberUtil.generateBySet(1, 100, 6);
+        Console.log(ints);
+        Console.log(integers);
+    }
+
+    @ApiOperation("方法根据范围和步进，生成一个有序整数列表")
+    @Test
+    public void test29() {
+        // 方法根据范围和步进，生成一个有序整数列表。
+        int[] range = NumberUtil.range(10, 100, 6);
+        Console.log(range);
+        // 阶乘
+        long factorial = NumberUtil.factorial(3);
+        // 平方根
+        long sqrt = NumberUtil.sqrt(4);
+        Console.log(factorial);
+        Console.log(sqrt);
+        //NumberUtil.divisor 最大公约数
+        //NumberUtil.multiple 最小公倍数
+        //NumberUtil.getBinaryStr 获得数字对应的二进制字符串
+        //NumberUtil.binaryToInt 二进制转int
+        //NumberUtil.binaryToLong 二进制转long
+        //NumberUtil.compare 比较两个值的大小
+        //NumberUtil.toStr 数字转字符串，自动并去除尾小数点儿后多余的0
+    }
+
+    /**********  网络工具-NetUtil  **********************************************************************/
+
+    @ApiOperation("方法根据范围和步进，生成一个有序整数列表")
+    @Test
+    public void test30() {
+
+        //isInner 指定IP的long是否在指定范围内
+        String ip= "127.0.0.1";
+        long iplong = 2130706433L;
+        //根据long值获取ip v4地址
+        String ip1 = NetUtil.longToIpv4(iplong);
+        //根据ip地址计算出long型的数据
+        long ip2 = NetUtil.ipv4ToLong(ip);
+        //检测本地端口可用性
+        boolean result= NetUtil.isUsableLocalPort(6379);
+        //是否为有效的端口
+        boolean result2= NetUtil.isValidPort(6379);
+        //hideIpPart 隐藏掉IP地址的最后一部分为 * 代替
+        String result3 =NetUtil.hideIpPart(ip);
+        //isInnerIP 判定是否为内网IP
+        boolean innerIP = NetUtil.isInnerIP("10.5.163.154");
+        //localIpv4s 获得本机的IP地址列表
+        LinkedHashSet<String> localIpv4s = NetUtil.localIpv4s();
+        //toAbsoluteUrl 相对URL转换为绝对URL
+        String absoluteUrl = NetUtil.toAbsoluteUrl("http://www.baidu.com/image", "/baobao.gif");
+        //getIpByHost 通过域名得到IP
+        String ipByHost = NetUtil.getIpByHost("www.bbsmax.com");
+        Console.log(ip1);
+        Console.log(ip2);
+        Console.log(result);
+        Console.log(result2);
+        Console.log(result3);
+        Console.log(innerIP);
+        Console.log(localIpv4s);
+        Console.log(absoluteUrl);
+        Console.log(ipByHost);
+    }
+
+    /**********  随机工具-RandomUtil **********************************************************************/
+
+    @ApiOperation("随机工具")
+    @Test
+    public void test31() {
+        // 获得指定范围内的随机数
+        int i = RandomUtil.randomInt(1, 66);
+        // 随机bytes
+        byte[] bytes = RandomUtil.randomBytes(6);
+        // 随机获得列表中的元素
+        List<String> languages = new ArrayList<>();
+        languages.add("Java");
+        languages.add("PHP");
+        languages.add("Python");
+        String randomEle = RandomUtil.randomEle(languages);
+        // 随机获得列表中的一定量的不重复元素，返回Set
+        Set<String> strings = RandomUtil.randomEleSet(languages, 2);
+        // 获得一个随机的字符串（只包含数字和字符）
+        String ok = RandomUtil.randomString("ok", 6);
+        // 获得一个只包含数字的字符串
+        String s = RandomUtil.randomNumbers(6);
+        Console.log(i);
+        Console.log(bytes);
+        Console.log(randomEle);
+        Console.log(strings);
+        Console.log(ok);
+        Console.log(s);
+    }
+
+    @ApiOperation("权重随机生成器，传入带权重的对象，然后根据权重随机获取对象")
+    @Test
+    public void test32() {
+        List<WeightRandom.WeightObj<String>> weightList = new ArrayList<WeightRandom.WeightObj<String>>();
+        WeightRandom.WeightObj<String> a = new WeightRandom.WeightObj<String>("A", 1);
+        WeightRandom.WeightObj<String> b = new WeightRandom.WeightObj<String>("B", 2);
+        WeightRandom.WeightObj<String> c = new WeightRandom.WeightObj<String>("C", 3);
+        WeightRandom.WeightObj<String> d = new WeightRandom.WeightObj<String>("D", 4);
+        weightList.add(a);
+        weightList.add(b);
+        weightList.add(c);
+        weightList.add(d);
+        WeightRandom wr = RandomUtil.weightRandom(weightList);
+        String str = "";
+        int num_a = 0, num_b = 0, num_c = 0, num_d = 0;
+        for (int i = 0; i < 100000; i++) {
+            str = wr.next().toString();
+            switch (str) {
+                case "A":
+                    num_a = num_a+1;
+                    break;
+                case "B":
+                    num_b = num_b+1;
+                    break;
+                case "C":
+                    num_c = num_c+1;
+                    break;
+                case "D":
+                    num_d = num_d+1;
+                    break;
+            }
+            //System.out.println(str);
+        }
+        System.out.println("A---------"+num_a);
+        System.out.println("B---------"+num_b);
+        System.out.println("C---------"+num_c);
+        System.out.println("D---------"+num_d);
+    }
+
+    /**********  对象工具-ObjectUtil **********************************************************************/
+
+    @ApiOperation("比较两个对象是否相等")
+    @Test
+    public void test33() {
+        // 比较两个对象是否相等，相等需满足以下条件之一：
+        // obj1 == null && obj2 == null
+        // obj1.equals(obj2)
+        Object o1 = null;
+        Object o2 = 1;
+        Object o3 = null;
+        boolean equal = ObjectUtil.equal(o1, o2);
+        boolean equal2 = ObjectUtil.equal(o1, o3);
+        Console.log(equal);
+        Console.log(equal2);
+    }
+
+    /**********  字符串工具-StrUtil **********************************************************************/
+    @ApiOperation("hasBlank、hasEmpty方法")
+    @Test
+    public void test34() {
+        // 这两个方法的区别是hasEmpty只判断是否为null或者空字符串（""），
+        // hasBlank则会把不可见字符也算做空，isEmpty和isBlank同理。
+        Console.log(StrUtil.isBlank(""));
+        Console.log(StrUtil.isBlank(" "));
+        Console.log(StrUtil.isEmpty(""));
+        Console.log(StrUtil.isEmpty(" "));
+        Console.log(StrUtil.hasBlank(" "));
+        Console.log(StrUtil.hasEmpty(" "));
+    }
+
+    @ApiOperation("hasBlank、hasEmpty方法")
+    @Test
+    public void test35() {
+        // 这两个方法的区别是hasEmpty只判断是否为null或者空字符串（""），
+        // hasBlank则会把不可见字符也算做空，isEmpty和isBlank同理。
+        StringUtils.isBlank("");
+    }
+
+    @ApiOperation("去掉字符串的前缀后缀")
+    @Test
+    public void test36() {
+        // removePrefix、removeSuffix去掉字符串的前缀后缀
+        String fileName = StrUtil.removeSuffix("pretty_girl.jpg", ".jpg");
+        String fileName1 = StrUtil.removeSuffix("pretty_girl.jpg", ".JPG");
+        String fileName2 = StrUtil.removeSuffix("pretty_girl.JPG", ".jpg");
+        Console.log(fileName);
+        Console.log(fileName1);
+        Console.log(fileName2);
+        // 忽略大小写的removePrefixIgnoreCase和removeSuffixIgnoreCase
+        String s = StrUtil.removeSuffixIgnoreCase("pretty_girl.jpg", ".JPG");
+        String s1 = StrUtil.removeSuffixIgnoreCase("pretty_girl.JPG", ".jpg");
+        Console.log(s);
+        Console.log(s1);
+    }
+
+    @ApiOperation("format方法")
+    @Test
+    public void test37() {
+        String template = "{}爱{}，就像老鼠爱大米";
+        String str = StrUtil.format(template, 1, "你");
+        Console.log(str);
+    }
+
+    /**********  枚举工具-EnumUtil **********************************************************************/
+    @ApiOperation("获取枚举类中所有枚举对象的name列表")
+    @Test
+    public void test38() {
+        List<String> names = EnumUtil.getNames(TestEnum.class);
+        Console.log(names);
+    }
+
+    @ApiOperation("枚举类中各枚举对象下指定字段的值")
+    @Test
+    public void test39() {
+        List<Object> types = EnumUtil.getFieldValues(TestEnum.class, "type");
+        Console.log(types);
+    }
+
+    @ApiOperation("获取枚举字符串值和枚举对象的Map对应")
+    @Test
+    public void test40() {
+        Map<String, Object> enumMap = EnumUtil.getNameFieldMap(TestEnum.class, "type");
+        Console.log(enumMap);
+        Console.log(enumMap.get("TEST1"));
     }
 
 }

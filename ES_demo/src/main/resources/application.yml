@@ -1,5 +1,14 @@
+server:
+  port: 8066
+
 spring:
   application:
-    name: confif-client
+    name: es-demo
 
-
+eureka:
+  client:
+    service-url:
+      defaultZone: http://ImOK:123456@49.234.28.149:9000/eureka/  # eureka注册中心服务地址
+  instance:
+    instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port}
+    preferIpAddress: true # 鼠标移动到服务名上时，跳转连接是否显示IP
