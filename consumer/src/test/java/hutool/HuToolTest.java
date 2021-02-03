@@ -12,6 +12,7 @@ import cn.hutool.core.date.TimeInterval;
 import cn.hutool.core.lang.Console;
 import cn.hutool.core.lang.Editor;
 import cn.hutool.core.util.ArrayUtil;
+import cn.hutool.core.util.IdcardUtil;
 import cn.hutool.json.JSONUtil;
 import cn.smallbun.screw.core.Configuration;
 import cn.smallbun.screw.core.engine.EngineConfig;
@@ -345,6 +346,53 @@ public class HuToolTest {
                 return (t % 2 == 0) ? t : null;
             }});
         Assert.assertArrayEquals(filter, new Integer[]{2,4,6});
+        Console.log(filter);
+    }
+
+    @ApiOperation("判断对象是否为数组 & 转为字符串")
+    @Test
+    public void test22() {
+        // ArrayUtil.toString 通常原始类型的数组输出为字符串时无法正常显示，
+        // 于是封装此方法可以完美兼容原始类型数组和包装类型数组的转为字符串操作
+        Integer[] a = {1,2,3,4,5,6};
+        Console.log(a.toString());
+        String s = ArrayUtil.toString(a);
+        Console.log(s);
+        // ArrayUtil.join 方法使用间隔符将一个数组转为字符串，
+        // 比如[1,2,3,4]这个数组转为字符串，间隔符使用“-”的话，
+        // 结果为 1-2-3-4，join方法同样支持泛型数组和原始类型数组。
+        String s1 = ArrayUtil.join(a, "-");
+        Console.log(s1);
+    }
+
+    /**********  身份证工具-IdcardUtil  **********************************************************************/
+    @ApiOperation("过滤")
+    @Test
+    public void test23() {
+        String ID_18 = "342422199205200497";
+        String ID_15 = "150102880730303";
+        //是否有效
+        boolean valid = IdcardUtil.isValidCard(ID_18);
+        boolean valid15 = IdcardUtil.isValidCard(ID_15);
+        Console.log(valid);
+        Console.log(valid15);
+        //转换
+        String convert15To18 = IdcardUtil.convert15To18(ID_15);
+        Assert.assertEquals(convert15To18, "150102198807303035");
+        //年龄
+        DateTime date = DateUtil.parse("2021-05-20");
+        int age = IdcardUtil.getAgeByIdCard(ID_18, date);
+        Console.log(age);
+        //生日
+        String birth = IdcardUtil.getBirthByIdCard(ID_18);
+        String birth2 = IdcardUtil.getBirthByIdCard(ID_15);
+        //省份
+        String province = IdcardUtil.getProvinceByIdCard(ID_18);
+        String province2 = IdcardUtil.getProvinceByIdCard(ID_15);
+        Console.log(birth);
+        Console.log(birth2);
+        Console.log(province);
+        Console.log(province2);
     }
 
 }
