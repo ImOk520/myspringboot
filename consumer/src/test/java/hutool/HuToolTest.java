@@ -724,4 +724,8 @@ public class HuToolTest {
         Console.log(enumMap.get("TEST1"));
     }
 
+    /**********  Bean工具-BeanUtil **********************************************************************/
+
+
+
 }
