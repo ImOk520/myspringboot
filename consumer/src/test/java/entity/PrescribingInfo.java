@@ -19,6 +19,9 @@ import java.util.Date;
 @Accessors(chain = true)
 public class PrescribingInfo {
 
+    @ApiModelProperty("处方表ID")
+    private String id;
+
     @ApiModelProperty(value = "厂商来源id")
     private String sourceId;
     private String loginUserId;

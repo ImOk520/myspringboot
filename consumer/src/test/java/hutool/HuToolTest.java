@@ -1,5 +1,6 @@
 package hutool;
 
+import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.convert.Convert;
 import cn.hutool.core.date.BetweenFormater;
 import cn.hutool.core.date.DateField;
@@ -30,7 +31,9 @@ import cn.smallbun.screw.core.process.ProcessConfig;
 import com.alibaba.fastjson.JSONObject;
 import com.feng.consumer.util.SpringContextUtil;
 import entity.A;
+import entity.B;
 import entity.HisPrescriptionDemoVo;
+import entity.PrescribingInfo;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang.StringUtils;
@@ -39,6 +42,7 @@ import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.sql.DataSource;
+import java.beans.PropertyDescriptor;
 import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -51,6 +55,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Locale;
@@ -725,7 +730,55 @@ public class HuToolTest {
     }
 
     /**********  Bean工具-BeanUtil **********************************************************************/
+    @ApiOperation("是否为Bean对象")
+    @Test
+    public void test41() {
+        // 通常Java中对Bean的定义是包含setXXX和getXXX方法的对象，
+        // 在Hutool中，采取一种简单的判定Bean的方法：是否存在只有一个参数的setXXX方法。
+        boolean isBean = BeanUtil.isBean(HashMap.class);
+        Console.log(isBean);
+        boolean isBean2 = BeanUtil.isBean(TestEnum.class);
+        Console.log(isBean2);
+        boolean isBean3 = BeanUtil.isBean(A.class);
+        Console.log(isBean3);
+    }
 
+    @ApiOperation("内省")
+    @Test
+    public void test42() {
+        // 把一类中需要进行设置和获得的属性访问权限设置为private（私有的）
+        // 让外部的使用者看不见摸不着，而通过public（共有的）set和get方法来
+        // 对其属性的值来进行设置和获得，而内部的操作具体是怎样的？外界使用的人不用不知道，这就称为内省。
+        // 获得Bean字段描述数组
+        PropertyDescriptor[] propertyDescriptors_B = BeanUtil.getPropertyDescriptors(B.class);
+        // 获得字段名和字段描述Map
+        Map<String, PropertyDescriptor> propertyDescriptorMap = BeanUtil.getPropertyDescriptorMap(B.class, true);
+        //获得Bean类指定属性描述
+        PropertyDescriptor age = BeanUtil.getPropertyDescriptor(B.class, "age");
+        Console.log(propertyDescriptors_B);
+        Console.log("######################################");
+        Console.log(propertyDescriptorMap);
+        Console.log("######################################");
+        Console.log(age);
+    }
 
+    @ApiOperation("Bean转为Map")
+    @Test
+    public void test43() {
+        // 将一个Bean对象转为Map对象。
+        Map<String, Object> map = BeanUtil.beanToMap(B.class);
+        Console.log(map);
+    }
+
+    @ApiOperation("Bean转Bean")
+    @Test
+    public void test44() {
+        // Bean之间的转换主要是相同属性的复制
+        PrescribingInfo prescribingInfo = new PrescribingInfo();
+        prescribingInfo.setAge("6");
+        prescribingInfo.setId("6666");
+        HisPrescriptionDemoVo hisPrescriptionDemoVo = BeanUtil.copyProperties(prescribingInfo, HisPrescriptionDemoVo.class);
+        Console.log(hisPrescriptionDemoVo);
+    }
 
 }
