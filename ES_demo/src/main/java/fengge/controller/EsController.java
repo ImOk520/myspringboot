@@ -1,11 +1,12 @@
 package fengge.controller;
 
 import cn.hutool.core.lang.Console;
+import cn.hutool.core.util.RandomUtil;
 import cn.hutool.json.JSONUtil;
 import fengge.entity.B;
+import fengge.entity.Good;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.lucene.search.TermQuery;
 import org.elasticsearch.action.admin.indices.delete.DeleteIndexRequest;
 import org.elasticsearch.action.bulk.BulkRequest;
 import org.elasticsearch.action.bulk.BulkResponse;
@@ -26,23 +27,23 @@ import org.elasticsearch.client.indices.CreateIndexRequest;
 import org.elasticsearch.client.indices.CreateIndexResponse;
 import org.elasticsearch.client.indices.GetIndexRequest;
 import org.elasticsearch.client.indices.GetIndexResponse;
+import org.elasticsearch.common.text.Text;
 import org.elasticsearch.common.unit.TimeValue;
 import org.elasticsearch.common.xcontent.XContentType;
-import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.index.query.TermQueryBuilder;
 import org.elasticsearch.rest.RestStatus;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
+import org.elasticsearch.search.fetch.subphase.highlight.HighlightBuilder;
+import org.elasticsearch.search.fetch.subphase.highlight.HighlightField;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
-import javax.naming.directory.SearchResult;
 import java.io.*;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Feng, Ge 2020-10-13 20:32
@@ -147,7 +148,7 @@ public class EsController {
         BulkRequest bulkRequest = new BulkRequest();
         for (int i = 0; i < bList.size(); i++) {
             bulkRequest.add(
-                    new IndexRequest("index-2").id("" + (i+1)).source(JSONUtil.toJsonStr(bList.get(i)), XContentType.JSON)
+                    new IndexRequest("index-2").id("" + (i + 1)).source(JSONUtil.toJsonStr(bList.get(i)), XContentType.JSON)
             );
         }
         BulkResponse bulkResponse = client.bulk(bulkRequest, RequestOptions.DEFAULT);
@@ -165,7 +166,7 @@ public class EsController {
         searchRequest.source(sourceBuilder);
         SearchResponse searchResponse = client.search(searchRequest, RequestOptions.DEFAULT);
         log.info(JSONUtil.toJsonStr(searchResponse.getHits()));
-        for (SearchHit hit : searchResponse.getHits()){
+        for (SearchHit hit : searchResponse.getHits()) {
             System.out.println(hit.getSourceAsMap());
             System.out.println("============================");
             System.out.println(hit.getSourceAsString());
@@ -173,4 +174,62 @@ public class EsController {
         return JSONUtil.toJsonStr(searchResponse.getHits());
     }
 
+
+    @ApiOperation("将爬虫数据存入ES")
+    @PostMapping("/saveHtmlDoc")
+    public boolean saveHtmlDoc(String keyword, String indexName) throws IOException {
+        List<Good> goods = HtmlParseUtil.parseJD(keyword);
+        // 商品批量入ES
+        BulkRequest bulkRequest = new BulkRequest();
+        bulkRequest.timeout(TimeValue.MAX_VALUE);
+        for (int i = 0; i < goods.size(); i++) {
+            int i1 = RandomUtil.randomInt(1, 100000000);
+            bulkRequest.add(
+                    new IndexRequest(indexName).id("" + i1).source(JSONUtil.toJsonStr(goods.get(i)), XContentType.JSON)
+            );
+        }
+        BulkResponse response = client.bulk(bulkRequest, RequestOptions.DEFAULT);
+        return response.hasFailures();
+    }
+
+    @ApiOperation("搜索ES中的爬虫数据")
+    @GetMapping("/searchHtmlDoc")
+    public List<Map<String, Object>> searchHtmlDoc(String keyword, int pageIndex, int pageSize, String indexName) throws IOException {
+        SearchRequest request = new SearchRequest(indexName);
+        SearchSourceBuilder sourceBuilder = new SearchSourceBuilder();
+        sourceBuilder.from(pageIndex);
+        sourceBuilder.size(pageSize);
+        // 精准匹配
+        TermQueryBuilder termQueryBuilder = QueryBuilders.termQuery("name", keyword);
+        sourceBuilder.query(termQueryBuilder);
+        sourceBuilder.timeout(TimeValue.MAX_VALUE);
+        // 高亮处理
+        HighlightBuilder highlightBuilder = new HighlightBuilder();
+        highlightBuilder.field("name");
+        highlightBuilder.requireFieldMatch(false);
+        highlightBuilder.preTags("<span style='color:red'>");
+        highlightBuilder.postTags("</span>");
+        sourceBuilder.highlighter(highlightBuilder);
+        request.source(sourceBuilder);
+        SearchResponse search = client.search(request, RequestOptions.DEFAULT);
+        SearchHit[] hits = search.getHits().getHits();
+
+        ArrayList<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
+        for (SearchHit hit : hits) {
+            Map<String, HighlightField> highlightFields = hit.getHighlightFields();
+            HighlightField name = highlightFields.get("name");
+            Map<String, Object> sourceAsMap = hit.getSourceAsMap();
+
+            if (name != null) {
+                Text[] fragments = name.fragments();
+                String result_name = "";
+                for (Text text : fragments) {
+                    result_name += text;
+                }
+                sourceAsMap.put("name", result_name);
+            }
+            list.add(sourceAsMap);
+        }
+        return list;
+    }
 }
