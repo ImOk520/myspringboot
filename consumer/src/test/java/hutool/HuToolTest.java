@@ -1,6 +1,7 @@
 package hutool;
 
 import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.convert.Convert;
 import cn.hutool.core.date.BetweenFormater;
 import cn.hutool.core.date.DateField;
@@ -10,9 +11,11 @@ import cn.hutool.core.date.DateUnit;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.date.Month;
 import cn.hutool.core.date.TimeInterval;
+import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.lang.Console;
 import cn.hutool.core.lang.Editor;
 import cn.hutool.core.lang.WeightRandom;
+import cn.hutool.core.math.MathUtil;
 import cn.hutool.core.net.NetUtil;
 import cn.hutool.core.util.ArrayUtil;
 import cn.hutool.core.util.EnumUtil;
@@ -21,6 +24,8 @@ import cn.hutool.core.util.NumberUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.RandomUtil;
 import cn.hutool.core.util.StrUtil;
+import cn.hutool.http.HttpUtil;
+import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 import cn.smallbun.screw.core.Configuration;
 import cn.smallbun.screw.core.engine.EngineConfig;
@@ -28,7 +33,6 @@ import cn.smallbun.screw.core.engine.EngineFileType;
 import cn.smallbun.screw.core.engine.EngineTemplateType;
 import cn.smallbun.screw.core.execute.DocumentationExecute;
 import cn.smallbun.screw.core.process.ProcessConfig;
-import com.alibaba.fastjson.JSONObject;
 import com.feng.consumer.util.SpringContextUtil;
 import entity.A;
 import entity.B;
@@ -48,6 +52,7 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
+import java.nio.charset.Charset;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -77,7 +82,7 @@ public class HuToolTest {
         // 有了这个以后再也不用循环打印数组或者list了
         int a = 1;
         String aStr = Convert.toStr(a);
-        long[] b = {1,2,3,4,5};
+        long[] b = {1, 2, 3, 4, 5};
         String bStr = Convert.toStr(b);
         System.out.println(aStr);
         System.out.println(bStr);
@@ -90,9 +95,9 @@ public class HuToolTest {
     public void test2() {
         // Integer类取值和 int 类型取值一致,取值范围是从-2147483648 至 2147483647
         // 包括-2147483648 和 2147483647
-        String[] b = { "1", "2", "3", "2147483647" };
+        String[] b = {"1", "2", "3", "2147483647"};
         Integer[] intArray = Convert.toIntArray(b);
-        long[] c = {1,2,3,4,5};
+        long[] c = {1, 2, 3, 4, 5};
         Integer[] intArray2 = Convert.toIntArray(c);
         System.out.println(Convert.toStr(intArray));
         System.out.println(Convert.toStr(intArray2));
@@ -149,7 +154,7 @@ public class HuToolTest {
         //当前时间字符串，格式：yyyy-MM-dd HH:mm:ss
         String now = DateUtil.now();
         //当前日期字符串，格式：yyyy-MM-dd
-        String today= DateUtil.today();
+        String today = DateUtil.today();
         System.out.println(date);
         System.out.println(date2);
         System.out.println(date3);
@@ -322,7 +327,7 @@ public class HuToolTest {
         boolean empty1 = ArrayUtil.isEmpty(b);
         Console.log(empty);
         Console.log(empty1);
-        int[] c = {1,2};
+        int[] c = {1, 2};
         boolean empty2 = ArrayUtil.isNotEmpty(c);
         Console.log(empty2);
         boolean empty3 = ArrayUtil.isNotEmpty(b);
@@ -356,13 +361,14 @@ public class HuToolTest {
     @ApiOperation("过滤")
     @Test
     public void test21() {
-        Integer[] a = {1,2,3,4,5,6};
-        Integer[] filter = ArrayUtil.filter(a, new Editor<Integer>(){
+        Integer[] a = {1, 2, 3, 4, 5, 6};
+        Integer[] filter = ArrayUtil.filter(a, new Editor<Integer>() {
             @Override
             public Integer edit(Integer t) {
                 return (t % 2 == 0) ? t : null;
-            }});
-        Assert.assertArrayEquals(filter, new Integer[]{2,4,6});
+            }
+        });
+        Assert.assertArrayEquals(filter, new Integer[]{2, 4, 6});
         Console.log(filter);
     }
 
@@ -371,7 +377,7 @@ public class HuToolTest {
     public void test22() {
         // ArrayUtil.toString 通常原始类型的数组输出为字符串时无法正常显示，
         // 于是封装此方法可以完美兼容原始类型数组和包装类型数组的转为字符串操作
-        Integer[] a = {1,2,3,4,5,6};
+        Integer[] a = {1, 2, 3, 4, 5, 6};
         Console.log(a.toString());
         String s = ArrayUtil.toString(a);
         Console.log(s);
@@ -419,8 +425,8 @@ public class HuToolTest {
         // 以上四种运算都会将double转为BigDecimal后计算，
         // 解决float和double类型无法进行精确计算的问题。
         // 这些方法常用于商业计算。
-        double d1= 8989.02;
-        float d2= (float) 8989.2;
+        double d1 = 8989.02;
+        float d2 = (float) 8989.2;
         double add = NumberUtil.add(d1, d2);
         double sub = NumberUtil.sub(d1, d2);
         double mul = NumberUtil.mul(d1, d2);
@@ -436,14 +442,14 @@ public class HuToolTest {
     public void test25() {
         // NumberUtil.round 方法主要封装BigDecimal中的方法来保留小数，
         // 返回double，这个方法更加灵活，可以选择四舍五入或者全部舍弃等模式。
-        double te1=123456.123456;
-        double te2=123456.128456;
+        double te1 = 123456.123456;
+        double te2 = 123456.128456;
         BigDecimal bigDecimal1 = NumberUtil.round(te1, 4);
-        BigDecimal bigDecimal2 = NumberUtil.round(te2,4);
+        BigDecimal bigDecimal2 = NumberUtil.round(te2, 4);
         Console.log(bigDecimal1);
         Console.log(bigDecimal2);
-        String s = NumberUtil.roundStr(te1,2);
-        String s1 = NumberUtil.roundStr(te2,2);
+        String s = NumberUtil.roundStr(te1, 2);
+        String s1 = NumberUtil.roundStr(te2, 2);
         Console.log(s);
         Console.log(s1);
     }
@@ -453,14 +459,14 @@ public class HuToolTest {
     public void test26() {
         // NumberUtil.round 方法主要封装BigDecimal中的方法来保留小数，
         // 返回double，这个方法更加灵活，可以选择四舍五入或者全部舍弃等模式。
-        double te1=123456.123456;
-        double te2=123456.128456;
+        double te1 = 123456.123456;
+        double te2 = 123456.128456;
         BigDecimal bigDecimal1 = NumberUtil.round(te1, 4);
-        BigDecimal bigDecimal2 = NumberUtil.round(te2,4);
+        BigDecimal bigDecimal2 = NumberUtil.round(te2, 4);
         Console.log(bigDecimal1);
         Console.log(bigDecimal2);
-        String s = NumberUtil.roundStr(te1,2);
-        String s1 = NumberUtil.roundStr(te2,2);
+        String s = NumberUtil.roundStr(te1, 2);
+        String s1 = NumberUtil.roundStr(te2, 2);
         Console.log(s);
         Console.log(s1);
     }
@@ -468,7 +474,7 @@ public class HuToolTest {
     @ApiOperation("double或long类型的数字做格式化操作")
     @Test
     public void test27() {
-        long c=299792458;//光速
+        long c = 299792458;//光速
         String formatStr = NumberUtil.decimalFormat(",###", c);
         Console.log(formatStr);
         // 格式中主要以 # 和 0 两种占位符号来指定数字长度。0 表示如果位数不足则以 0 填充，# 表示只要有可能就把数字拉上这个位置。
@@ -543,18 +549,18 @@ public class HuToolTest {
     public void test30() {
 
         //isInner 指定IP的long是否在指定范围内
-        String ip= "127.0.0.1";
+        String ip = "127.0.0.1";
         long iplong = 2130706433L;
         //根据long值获取ip v4地址
         String ip1 = NetUtil.longToIpv4(iplong);
         //根据ip地址计算出long型的数据
         long ip2 = NetUtil.ipv4ToLong(ip);
         //检测本地端口可用性
-        boolean result= NetUtil.isUsableLocalPort(6379);
+        boolean result = NetUtil.isUsableLocalPort(6379);
         //是否为有效的端口
-        boolean result2= NetUtil.isValidPort(6379);
+        boolean result2 = NetUtil.isValidPort(6379);
         //hideIpPart 隐藏掉IP地址的最后一部分为 * 代替
-        String result3 =NetUtil.hideIpPart(ip);
+        String result3 = NetUtil.hideIpPart(ip);
         //isInnerIP 判定是否为内网IP
         boolean innerIP = NetUtil.isInnerIP("10.5.163.154");
         //localIpv4s 获得本机的IP地址列表
@@ -622,24 +628,24 @@ public class HuToolTest {
             str = wr.next().toString();
             switch (str) {
                 case "A":
-                    num_a = num_a+1;
+                    num_a = num_a + 1;
                     break;
                 case "B":
-                    num_b = num_b+1;
+                    num_b = num_b + 1;
                     break;
                 case "C":
-                    num_c = num_c+1;
+                    num_c = num_c + 1;
                     break;
                 case "D":
-                    num_d = num_d+1;
+                    num_d = num_d + 1;
                     break;
             }
             //System.out.println(str);
         }
-        System.out.println("A---------"+num_a);
-        System.out.println("B---------"+num_b);
-        System.out.println("C---------"+num_c);
-        System.out.println("D---------"+num_d);
+        System.out.println("A---------" + num_a);
+        System.out.println("B---------" + num_b);
+        System.out.println("C---------" + num_c);
+        System.out.println("D---------" + num_d);
     }
 
     /**********  对象工具-ObjectUtil **********************************************************************/
@@ -780,5 +786,86 @@ public class HuToolTest {
         HisPrescriptionDemoVo hisPrescriptionDemoVo = BeanUtil.copyProperties(prescribingInfo, HisPrescriptionDemoVo.class);
         Console.log(hisPrescriptionDemoVo);
     }
+
+    /**********  集合工具 CollUtil **********************************************************************/
+
+    @ApiOperation("join 方法")
+    @Test
+    public void test45() {
+        String[] col = new String[]{"a", "b", "c", "d", "e"};
+        List<String> colList = CollUtil.newArrayList(col);
+        String str = CollUtil.join(colList, "#");
+        Console.log(str);
+    }
+
+    /**********  数学相关-MathUtil **********************************************************************/
+
+
+    @ApiOperation("排列/组合")
+    @Test
+    public void test46() {
+        // 排列
+        // 计算排列数
+        long count = MathUtil.arrangementCount(3);
+        String[] strs = {"1", "2", "3", "4", "5"};
+        // 排列选择（从列表中选择n个排列）
+        List<String[]> strings = MathUtil.arrangementSelect(strs, 2);
+        // 组合
+        // 计算组合数，即C(n, m) = n!/((n-m)! * m!)
+        long count1 = MathUtil.combinationCount(3, 6);
+        //  组合选择（从列表中选择n个组合）
+        List<String[]> strings1 = MathUtil.combinationSelect(strs, 2);
+        Console.log(count);
+        Console.log(strings);
+        Console.log(count1);
+        Console.log(strings1);
+    }
+
+    /**********  Hutool-json **********************************************************************/
+
+    @ApiOperation("创建")
+    @Test
+    public void test47() {
+        JSONObject obj = JSONUtil.createObj();
+        obj.append("a", "value1");
+        obj.append("b", "value2");
+        obj.append("c", "value3");
+        String s = obj.toString();
+        Console.log(obj);
+        Console.log(s);
+    }
+
+    /**********  http客户端(Hutool-http) **********************************************************************/
+    @ApiOperation("get请求")
+    @Test
+    public void test48() {
+        // 最简单的HTTP请求，可以自动通过header等信息判断编码，不区分HTTP和HTTPS
+        String result1= HttpUtil.get("https://www.baidu.com");
+        // 当无法识别页面编码的时候，可以自定义请求页面的编码
+        String result2= HttpUtil.get("https://www.baidu.com", Charset.forName("UTF-8"));
+        //可以单独传入http参数，这样参数会自动做URL编码，拼接在URL中
+        HashMap<String, Object> paramMap = new HashMap<>();
+        paramMap.put("city", "北京");
+        String result3= HttpUtil.get("https://www.baidu.com", paramMap);
+        Console.log(result1);
+        Console.log(result2);
+        Console.log(result3);
+    }
+
+    @ApiOperation("post请求")
+    @Test
+    public void test49() {
+        HashMap<String, Object> paramMap = new HashMap<>();
+        paramMap.put("city", "北京");
+        String result= HttpUtil.post("https://www.baidu.com", paramMap);
+        //文件上传只需将参数中的键指定（默认file），值设为文件对象即可，对于使用者来说，文件上传与普通表单提交并无区别
+        paramMap.put("file", FileUtil.file("D:\\face.jpg"));
+        String result1= HttpUtil.post("https://www.baidu.com", paramMap);
+    }
+
+
+
+
+
 
 }
