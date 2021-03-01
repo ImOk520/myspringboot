@@ -83,7 +83,7 @@ public class TextTest {
                 JSONObject jsonObject = new JSONObject(s);
                 System.out.println(jsonObject.get("message"));
                 String toWriteStr = jsonObject.get("message").toString();
-                writeToTXT(System.lineSeparator() + toWriteStr, destFilePath);
+                writeToTXT(toWriteStr + System.lineSeparator(), destFilePath);
             }
             br.close();
         }catch(Exception e){
