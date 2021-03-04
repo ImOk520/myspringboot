@@ -863,6 +863,20 @@ public class HuToolTest {
         String result1= HttpUtil.post("https://www.baidu.com", paramMap);
     }
 
+    @ApiOperation("获取某月的开始时间/获取某月的结束时间")
+    @Test
+    public void test50() {
+        String dateStr1 = "2021-02";
+        Date date1 = DateUtil.parse(dateStr1, DatePattern.NORM_MONTH_PATTERN);
+        Console.log("年月：{}",DateUtil.format(date1, DatePattern.NORM_MONTH_PATTERN));
+        DateTime dateTime = DateUtil.beginOfMonth(date1);
+        Console.log("月开始：{}",DateUtil.format(dateTime, DatePattern.NORM_DATETIME_PATTERN));
+        DateTime dateTime1 = DateUtil.endOfMonth(date1);
+        Console.log("月结束：{}",DateUtil.format(dateTime1, DatePattern.NORM_DATETIME_PATTERN));
+
+
+    }
+
 
 
 
