@@ -873,8 +873,20 @@ public class HuToolTest {
         Console.log("月开始：{}",DateUtil.format(dateTime, DatePattern.NORM_DATETIME_PATTERN));
         DateTime dateTime1 = DateUtil.endOfMonth(date1);
         Console.log("月结束：{}",DateUtil.format(dateTime1, DatePattern.NORM_DATETIME_PATTERN));
+    }
 
-
+    @ApiOperation("查找指定字符串是否包含指定字符串列表中的任意一个字符串")
+    @Test
+    public void test51() {
+        boolean hasContains = StrUtil.containsAny("20月", "岁", "月", "天");
+        System.out.println(hasContains);
+        String s = " 1";
+        System.out.println(StrUtil.isNotBlank(s));
+        Integer i =  2147483647;
+        int totalCount = 0;
+        int size = 10;
+        int k = totalCount%10==0 ? (totalCount / size):(totalCount / size + 1);
+        System.out.println(k);
     }
 
 
