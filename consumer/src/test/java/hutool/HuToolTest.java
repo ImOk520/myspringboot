@@ -3,7 +3,6 @@ package hutool;
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.convert.Convert;
-import cn.hutool.core.date.BetweenFormater;
 import cn.hutool.core.date.DateField;
 import cn.hutool.core.date.DatePattern;
 import cn.hutool.core.date.DateTime;
@@ -27,37 +26,21 @@ import cn.hutool.core.util.StrUtil;
 import cn.hutool.http.HttpUtil;
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
-import cn.smallbun.screw.core.Configuration;
-import cn.smallbun.screw.core.engine.EngineConfig;
-import cn.smallbun.screw.core.engine.EngineFileType;
-import cn.smallbun.screw.core.engine.EngineTemplateType;
-import cn.smallbun.screw.core.execute.DocumentationExecute;
-import cn.smallbun.screw.core.process.ProcessConfig;
-import com.feng.consumer.util.SpringContextUtil;
 import entity.A;
 import entity.B;
 import entity.HisPrescriptionDemoVo;
 import entity.PrescribingInfo;
-import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang.StringUtils;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import javax.sql.DataSource;
 import java.beans.PropertyDescriptor;
-import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.net.URLDecoder;
-import java.net.URLEncoder;
 import java.nio.charset.Charset;
 import java.text.DecimalFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -65,10 +48,8 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
-import java.util.stream.Collectors;
 
 /**
  * Feng, Ge 2020-10-20 17:28
@@ -835,6 +816,14 @@ public class HuToolTest {
         Console.log(s);
     }
 
+    @ApiOperation("对象转json字符串")
+    @Test
+    public void test412() {
+        A a = new A("11");
+        String s = JSONUtil.toJsonStr(a);
+        Console.log(s);
+    }
+
     /**********  http客户端(Hutool-http) **********************************************************************/
     @ApiOperation("get请求")
     @Test
@@ -889,6 +878,15 @@ public class HuToolTest {
         System.out.println(k);
     }
 
+    @ApiOperation("查找指定字符串是否包含指定字符串列表中的任意一个字符串")
+    @Test
+    public void test52() {
+        try {
+            System.out.println("[]" + DESUtil.encrypt("fpva1234","18989772057,zyzl123456,9C-5C-8E-6F-C9-89"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 
 

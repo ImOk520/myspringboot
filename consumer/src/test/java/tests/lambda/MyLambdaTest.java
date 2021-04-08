@@ -113,7 +113,7 @@ public class MyLambdaTest {
         int[] numbers = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
         int sum = 0;
         for (int i : numbers) {
-            sum += i;
+            sum += i  ;
         }
         System.out.println("sum : " + sum); // 55
         System.out.println("==============================================================");
