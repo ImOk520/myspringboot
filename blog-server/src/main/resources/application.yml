@@ -14,3 +14,16 @@ mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
+shiro-redis:
+  enabled: true
+  redis-manager:
+    host: 49.234.28.149:6379
+    password: gefeng
+
+imok:
+  jwt:
+    # 加密秘钥
+    secret: f4e2e52034348f86b67cde581c0f9eb5
+    # token有效时长，7天，单位秒
+    expire: 604800
+    header: token
