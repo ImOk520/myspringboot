@@ -20,6 +20,7 @@
         <module>my-eureka-another</module>
         <module>my-eureka-another-two</module>
         <module>ES_demo</module>
+        <module>blog-server</module>
     </modules>
 
     <packaging>pom</packaging>
