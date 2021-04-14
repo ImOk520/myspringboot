@@ -14,6 +14,7 @@ import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.lang.Console;
 import cn.hutool.core.lang.Editor;
 import cn.hutool.core.lang.WeightRandom;
+import cn.hutool.core.map.MapUtil;
 import cn.hutool.core.math.MathUtil;
 import cn.hutool.core.net.NetUtil;
 import cn.hutool.core.util.ArrayUtil;
@@ -887,6 +888,19 @@ public class HuToolTest {
             e.printStackTrace();
         }
     }
+
+    @ApiOperation("map操作")
+    @Test
+    public void test53() {
+        Map<Object, Object> map = MapUtil.builder()
+                .put("id", 1)
+                .put("username", 1)
+                .put("avatar", 1)
+                .put("email", 1)
+                .map();
+        Console.log(map);
+    }
+
 
 
 

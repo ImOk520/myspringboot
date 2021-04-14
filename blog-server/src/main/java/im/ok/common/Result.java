@@ -42,6 +42,7 @@ public class Result implements Serializable {
          m.setMsg(mess);
          return m;
     }
+
 }
 
 
