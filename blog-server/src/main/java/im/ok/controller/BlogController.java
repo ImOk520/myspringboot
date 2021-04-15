@@ -29,8 +29,6 @@ public class BlogController {
         this.blogService = blogService;
     }
 
-
-
     @GetMapping("/blogs")
     public Result blogs(Integer currentPage) {
         if(currentPage == null || currentPage < 1) currentPage = 1;
@@ -62,5 +60,6 @@ public class BlogController {
         BeanUtil.copyProperties(blog, temp, "id", "userId", "created", "status");
         blogService.saveOrUpdate(temp);
         return Result.success("操作成功", null);
+
     }
 }
