@@ -1,9 +1,8 @@
 package GOF.facade;
 
 /**
- * Feng, Ge 2021/4/16 0016 15:19
+ * 外观角色
  */
-//外观角色
 class Facade {
     private SubSystem01 obj1 = new SubSystem01();
     private SubSystem02 obj2 = new SubSystem02();
