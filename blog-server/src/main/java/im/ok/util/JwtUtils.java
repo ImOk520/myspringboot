@@ -16,7 +16,7 @@ import java.util.Date;
 @Slf4j
 @Data
 @Component
-@ConfigurationProperties(prefix = "imok.jwt")
+@ConfigurationProperties(prefix = "markerhub.jwt")
 public class JwtUtils {
 
     private String secret;
@@ -47,7 +47,7 @@ public class JwtUtils {
                     .parseClaimsJws(token)
                     .getBody();
         }catch (Exception e){
-            log.debug("validate is token error ", e);
+            System.out.println("validate is token error "+ e);
             return null;
         }
     }
