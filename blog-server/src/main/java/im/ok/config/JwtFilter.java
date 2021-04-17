@@ -1,7 +1,6 @@
 package im.ok.config;
 
 import cn.hutool.json.JSONUtil;
-import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import im.ok.common.Result;
 import im.ok.util.JwtUtils;
 import io.jsonwebtoken.Claims;
@@ -12,6 +11,7 @@ import org.apache.shiro.web.filter.authc.AuthenticatingFilter;
 import org.apache.shiro.web.util.WebUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.ServletRequest;
@@ -20,63 +20,64 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-/**
- * Feng, Ge 2021/4/14 0014 14:54
- */
 @Component
 public class JwtFilter extends AuthenticatingFilter {
 
-    private JwtUtils jwtUtils;
-
     @Autowired
-    public void JwtFilter (JwtUtils jwtUtils) {
-        this.jwtUtils = jwtUtils;
-    }
+    JwtUtils jwtUtils;
 
     @Override
     protected AuthenticationToken createToken(ServletRequest servletRequest, ServletResponse servletResponse) throws Exception {
-        // 获取 token
+
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         String jwt = request.getHeader("Authorization");
-        if(StringUtils.isEmpty(jwt)){
+        if(StringUtils.isEmpty(jwt)) {
             return null;
         }
+
         return new JwtToken(jwt);
     }
+
     @Override
     protected boolean onAccessDenied(ServletRequest servletRequest, ServletResponse servletResponse) throws Exception {
+
         HttpServletRequest request = (HttpServletRequest) servletRequest;
-        String token = request.getHeader("Authorization");
-        if(StringUtils.isEmpty(token)) {
+        String jwt = request.getHeader("Authorization");
+        if(StringUtils.isEmpty(jwt)) {
             return true;
         } else {
-            // 判断是否已过期
-            Claims claim = jwtUtils.getClaimByToken(token);
+
+            // 校验jwt
+            Claims claim = jwtUtils.getClaimByToken(jwt);
             if(claim == null || jwtUtils.isTokenExpired(claim.getExpiration())) {
-                throw new ExpiredCredentialsException("token已失效，请重新登录！");
+                throw new ExpiredCredentialsException("token已失效，请重新登录");
             }
+
+            // 执行登录
+            return executeLogin(servletRequest, servletResponse);
         }
-        // 执行自动登录
-        return executeLogin(servletRequest, servletResponse);
     }
+
     @Override
     protected boolean onLoginFailure(AuthenticationToken token, AuthenticationException e, ServletRequest request, ServletResponse response) {
-        HttpServletResponse httpResponse = (HttpServletResponse) response;
+
+        HttpServletResponse httpServletResponse = (HttpServletResponse) response;
+
+        Throwable throwable = e.getCause() == null ? e : e.getCause();
+        Result result = Result.fail(throwable.getMessage());
+        String json = JSONUtil.toJsonStr(result);
+
         try {
-            //处理登录失败的异常
-            Throwable throwable = e.getCause() == null ? e : e.getCause();
-            Result r = Result.fail(throwable.getMessage());
-            String json = JSONUtil.toJsonStr(r);
-            httpResponse.getWriter().print(json);
-        } catch (IOException e1) {
+            httpServletResponse.getWriter().print(json);
+        } catch (IOException ioException) {
+
         }
         return false;
     }
-    /**
-     * 对跨域提供支持
-     */
+
     @Override
     protected boolean preHandle(ServletRequest request, ServletResponse response) throws Exception {
+
         HttpServletRequest httpServletRequest = WebUtils.toHttp(request);
         HttpServletResponse httpServletResponse = WebUtils.toHttp(response);
         httpServletResponse.setHeader("Access-control-Allow-Origin", httpServletRequest.getHeader("Origin"));
@@ -87,7 +88,7 @@ public class JwtFilter extends AuthenticatingFilter {
             httpServletResponse.setStatus(org.springframework.http.HttpStatus.OK.value());
             return false;
         }
+
         return super.preHandle(request, response);
     }
 }
-

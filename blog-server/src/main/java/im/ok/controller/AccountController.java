@@ -22,15 +22,10 @@ import javax.servlet.http.HttpServletResponse;
 @RestController
 public class AccountController {
 
-
-    private IMUserService userService;
-    private JwtUtils jwtUtils;
-
     @Autowired
-    public void AccountController (IMUserService userService, JwtUtils jwtUtils) {
-        this.userService = userService;
-        this.jwtUtils = jwtUtils;
-    }
+    IMUserService userService;
+    @Autowired
+    JwtUtils jwtUtils;
 
     /**
      * 登录接口
@@ -46,7 +41,7 @@ public class AccountController {
         String jwt = jwtUtils.generateToken(user.getId());
         response.setHeader("Authorization", jwt);
         response.setHeader("Access-Control-Expose-Headers", "Authorization");
-        return Result.success(MapUtil.builder()
+        return Result.succ(MapUtil.builder()
                 .put("id", user.getId())
                 .put("username", user.getUsername())
                 .put("avatar", user.getAvatar())
@@ -62,7 +57,7 @@ public class AccountController {
     @RequiresAuthentication
     public Result logout() {
         SecurityUtils.getSubject().logout();
-        return Result.success(null);
+        return Result.succ(null);
     }
 }
 
