@@ -14,5 +14,4 @@ public class Client {
         //开始活动
         subject.doSomething();
     }
-
 }

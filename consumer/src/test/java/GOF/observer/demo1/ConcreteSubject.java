@@ -10,5 +10,4 @@ public class ConcreteSubject extends Subject {
         //...
         super.notifyObserver();
     }
-
 }

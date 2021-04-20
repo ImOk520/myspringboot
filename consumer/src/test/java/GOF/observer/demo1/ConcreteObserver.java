@@ -9,5 +9,4 @@ public class ConcreteObserver implements Observer {
     public void update() {
         System.out.println("收到消息，进行处理");
     }
-
 }
