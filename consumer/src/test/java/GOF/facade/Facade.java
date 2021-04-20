@@ -1,6 +1,8 @@
 package GOF.facade;
 
-//外观角色
+/**
+ * 外观角色
+ */
 class Facade {
     private SubSystem01 obj1 = new SubSystem01();
     private SubSystem02 obj2 = new SubSystem02();
