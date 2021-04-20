@@ -1,3 +1,4 @@
+import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.json.JSONUtil;
 import cn.smallbun.screw.core.Configuration;
 import cn.smallbun.screw.core.engine.EngineConfig;
@@ -52,7 +53,6 @@ public class MyTest {
         list2.add(new A("宋江"));
         list2.add(new A("扈三娘"));
         list2.add(new A("秦明"));
-
         System.out.println("1==================================");
         list.forEach(diagnosisVO ->
                 {
