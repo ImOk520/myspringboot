@@ -3,7 +3,7 @@ package GOF.strategy;
 
 /**
  *
- * Feng, Ge
+ *
  */
 public class Strategy01 {
 
