@@ -1,7 +1,7 @@
 package GOF.memento;
 
 /**
- * 负责管理Memoto
+ * 负责管理 Memento
  */
 public class Caretaker {
     //备忘录

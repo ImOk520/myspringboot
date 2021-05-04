@@ -10,5 +10,4 @@ public class Memento {
     public int topicNum;
     public int remainingTime;
     public String answer;
-
 }

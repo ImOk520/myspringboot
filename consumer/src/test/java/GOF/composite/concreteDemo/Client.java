@@ -1,3 +1,4 @@
+package GOF.composite.concreteDemo;
 
 import GOF.composite.concreteDemo.FolderLeaf;
 import GOF.composite.concreteDemo.FolderMode;
