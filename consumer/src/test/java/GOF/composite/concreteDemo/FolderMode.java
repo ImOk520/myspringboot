@@ -4,7 +4,6 @@ import lombok.ToString;
 
 @ToString
 public abstract class FolderMode {
-
     private String name;
     private String path;
     private String size;
