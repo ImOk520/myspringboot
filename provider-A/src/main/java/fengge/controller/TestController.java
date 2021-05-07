@@ -23,8 +23,4 @@ import java.util.List;
 @RequestMapping("/test")
 public class TestController {
 
-    @PostMapping("/constraintAnnotation")
-    public void testConstraintAnnotation(@Valid @RequestBody DeptDTO deptDTO) {
-        Console.log(deptDTO.toString());
-    }
 }

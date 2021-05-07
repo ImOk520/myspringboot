@@ -14,22 +14,5 @@ import java.util.List;
 @RequestMapping("/dept")
 public class DeptController {
 
-    @Autowired
-    private DeptService deptService;
 
-    @PostMapping("/add")
-    public boolean add(@RequestBody Dept dept){
-        return deptService.addDept(dept);
-    }
-
-    @GetMapping("/getById/{deptno}")
-    public Dept getById(@PathVariable("deptno") Long deptno){
-        Dept dept = deptService.queryById(deptno);
-        return deptService.queryById(deptno);
-    }
-
-    @GetMapping("/getAll")
-    public List<Dept> getAll(){
-        return deptService.queryAll();
-    }
 }

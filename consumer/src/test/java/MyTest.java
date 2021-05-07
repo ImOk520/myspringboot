@@ -1,3 +1,4 @@
+import cn.hutool.core.lang.Console;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.json.JSONUtil;
 import cn.smallbun.screw.core.Configuration;
@@ -216,6 +217,7 @@ public class MyTest {
     @Test
     public void test6() {
         System.out.println(JSONUtil.isJson("{'111':'999'}"));
+        Console.log(System.getProperty("user.dir"));
     }
 
     @Test
