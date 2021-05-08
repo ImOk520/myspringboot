@@ -1,3 +1,5 @@
+package annotationTest;
+
 import cn.hutool.core.lang.Console;
 import fengge.DTO.CarDTO;
 import fengge.config.scope.ScopeConfig_lazy;
