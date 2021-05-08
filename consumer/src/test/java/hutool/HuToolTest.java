@@ -901,6 +901,14 @@ public class HuToolTest {
         Console.log(map);
     }
 
+    @ApiOperation("ArrayUtil")
+    @Test
+    public void test54() {
+        String [] s ={"GEELY", "CHANGAN","BMW"};
+        boolean bmw = ArrayUtil.contains(s, "BMW");
+        Console.log(bmw);
+    }
+
 
 
 

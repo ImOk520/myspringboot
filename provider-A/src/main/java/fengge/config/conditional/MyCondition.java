@@ -45,7 +45,7 @@ public class MyCondition implements Condition {
         Class<? extends AnnotatedTypeMetadata> aClass = metadata.getClass();
         Console.log("【5】" + aClass);
         String[] beanNamesForType = context.getBeanFactory().getBeanNamesForType(CarDTO.class);
-        Console.log("【6】" + beanNamesForType);
+        Console.log("【6】" + context.getEnvironment().getProperty("server.port"));
         return true;
     }
 }

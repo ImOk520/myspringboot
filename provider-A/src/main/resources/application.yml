@@ -25,3 +25,7 @@ eureka:
   instance:
     instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port}
     preferIpAddress: true # 鼠标移动到服务名上时，跳转连接是否显示IP
+
+
+car:
+  type: madeInChina

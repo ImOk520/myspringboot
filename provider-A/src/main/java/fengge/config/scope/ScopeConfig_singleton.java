@@ -26,5 +26,4 @@ public class ScopeConfig_singleton {
         Console.log("carDTO创建，并添加到容器");
         return new CarDTO(1,"BMW");
     }
-
 }

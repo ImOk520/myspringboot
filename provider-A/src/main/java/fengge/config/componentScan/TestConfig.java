@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
 @ComponentScan(value = "fengge.controller") // 告诉spring去哪扫描要注入的bean
 public class TestConfig {
 
-    @Bean // 给spring注入一个bean，类型是返回值类型，id是默认是方法名
+    @Bean("car") // 给spring注入一个bean，类型是返回值类型，id是默认是方法名
     public CarDTO carDTO(){
         return new CarDTO(1,"BMW");
     }

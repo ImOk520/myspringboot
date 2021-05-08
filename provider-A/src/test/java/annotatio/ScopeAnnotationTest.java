@@ -1,4 +1,4 @@
-package annotationTest;
+package annotatio;
 
 import cn.hutool.core.lang.Console;
 import fengge.DTO.CarDTO;
