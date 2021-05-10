@@ -4,6 +4,8 @@ import cn.hutool.core.lang.Console;
 import fengge.DTO.CarDTO;
 import fengge.config.importAnnotation.ImportTestConfig;
 import fengge.config.importAnnotation.ImportTestConfig01;
+import fengge.config.importAnnotation.ImportTestConfig02;
+import fengge.config.importAnnotation.ImportTestConfig03;
 import fengge.config.scope.ScopeConfig_lazy;
 import fengge.config.scope.ScopeConfig_prototype;
 import fengge.config.scope.ScopeConfig_singleton;
@@ -34,7 +36,8 @@ public class ImportAnnotationTest {
 
     /**
      * @Import
-     * 使用@Import导入A、B后，两个bean不会注册到容器
+     * 1、使用@Import导入A、B后，两个bean不会注册到容器
+     * 2、使用@Import导入的组件id，默认是组件的全类名
      */
     @Test
     public void test1() {
@@ -44,13 +47,25 @@ public class ImportAnnotationTest {
     }
 
     /**
-     * 注解 @Lazy
-     * 使这个bean在使用时才创建并加载到容器
+     * @Import
+     * 1、使用@Import,并使用MyImportSelector去实现自定义导入组件
+     * 2、selectImports(AnnotationMetadata importingClassMetadata)中AnnotationMetadata是@import注解所在类的所有注解信息
+     */
+    @Test
+    public void test2() {
+        AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(ImportTestConfig02.class);
+        String[] beanDefinitionNames = applicationContext.getBeanDefinitionNames();
+        Stream.of(beanDefinitionNames).forEach(System.out::println);
+    }
+
+    /**
+     * @Import
      */
     @Test
     public void test3() {
-
+        AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(ImportTestConfig03.class);
+        String[] beanDefinitionNames = applicationContext.getBeanDefinitionNames();
+        Stream.of(beanDefinitionNames).forEach(System.out::println);
     }
-
 
 }
