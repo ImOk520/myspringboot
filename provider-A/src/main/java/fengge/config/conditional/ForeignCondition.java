@@ -1,5 +1,6 @@
 package fengge.config.conditional;
 
+import cn.hutool.core.lang.Console;
 import cn.hutool.core.util.ArrayUtil;
 import fengge.DTO.CarDTO;
 import org.springframework.context.annotation.Condition;
@@ -17,8 +18,10 @@ public class ForeignCondition implements Condition {
      */
     @Override
     public boolean matches(ConditionContext context, AnnotatedTypeMetadata metadata) {
-        String[] beanNamesForType = context.getBeanFactory().getBeanNamesForType(CarDTO.class);
-        if (ArrayUtil.contains(beanNamesForType, "BMW")) {
+        String type = context.getEnvironment().getProperty("car.type");
+        Console.log("[type]" + type);
+        if ("foreign".equals(type)) {
+            Console.log("[type?]" + true);
             return true;
         }
         return false;

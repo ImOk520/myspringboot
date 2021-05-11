@@ -9,26 +9,26 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class ConditionalTestConfig02 {
 
-    @Bean("GEELY")
     @Conditional({MadeInChinaCondition.class})
+    @Bean("GEELY")
     public CarDTO geelyCar(){
         return new CarDTO(2,"GEELY");
     }
 
-    @Bean("CHANGAN")
     @Conditional({MadeInChinaCondition.class})
+    @Bean("CHANGAN")
     public CarDTO changAnCar(){
         return new CarDTO(3,"CHANGAN");
     }
 
+    @Conditional({ForeignCondition.class})
     @Bean("BMW")
-    @Conditional({MadeInChinaCondition.class})
     public CarDTO foreignCar(){
         return new CarDTO(1,"BMW");
     }
 
-    @Bean("ppp")
     @Conditional({MadeInChinaCondition.class})
+    @Bean("PERSON")
     public PersonDTO personDTO(){
         return new PersonDTO(1,"OK");
     }

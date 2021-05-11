@@ -17,29 +17,5 @@ import java.util.List;
 @Service
 public class DeptServiceIml implements DeptService {
 
-    @Autowired
-    private DeptDao deptDao;
 
-    public boolean addDept(Dept dept) {
-        return deptDao.addDept(dept);
-    }
-
-    public Dept queryById(Long deptno) {
-        Dept dept = deptDao.queryById(deptno);
-        return dept;
-    }
-
-    public List<Dept> queryAll() {
-        return deptDao.queryAll();
-    }
-
-    @Transactional
-    public void testTransaction(Long deptno){
-        update(deptno);
-    }
-
-//    @Transactional(propagation = Propagation.REQUIRES_NEW)
-    public void update(Long deptno) {
-        deptDao.update(deptno);
-    }
 }

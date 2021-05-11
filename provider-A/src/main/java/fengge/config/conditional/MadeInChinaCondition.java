@@ -21,8 +21,10 @@ public class MadeInChinaCondition implements Condition {
      */
     @Override
     public boolean matches(ConditionContext context, AnnotatedTypeMetadata metadata) {
-        String[] beanNamesForType = context.getBeanFactory().getBeanNamesForType(CarDTO.class);
-        if (!ArrayUtil.contains(beanNamesForType, "BMW")) {
+        String type = context.getEnvironment().getProperty("car.type");
+        Console.log("[type]" + type);
+        if ("madeInChina".equals(type)) {
+            Console.log("[type?]" + true);
             return true;
         }
         return false;

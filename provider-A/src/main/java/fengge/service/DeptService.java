@@ -11,14 +11,6 @@ import java.util.List;
 @Service
 public interface DeptService {
 
-     boolean addDept(Dept dept);
 
-     Dept queryById(Long deptno);
-
-     void update(Long deptno);
-
-     List<Dept> queryAll();
-
-     void testTransaction(Long deptno);
 
 }
