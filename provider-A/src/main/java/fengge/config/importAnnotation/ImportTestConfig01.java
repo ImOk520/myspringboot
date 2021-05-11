@@ -10,14 +10,4 @@ import org.springframework.context.annotation.Import;
 @Import({A.class, B.class})
 public class ImportTestConfig01 {
 
-    @Bean("GEELY")
-    public CarDTO geelyCar(){
-        return new CarDTO(2,"GEELY");
-    }
-
-    @Bean("CHANGAN")
-    public CarDTO changAnCar(){
-        return new CarDTO(3,"CHANGAN");
-    }
-
 }
