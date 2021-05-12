@@ -11,7 +11,7 @@ import org.springframework.core.type.AnnotationMetadata;
 public class MyImportSelector implements ImportSelector {
 
     /**
-     * 方法返回值就是要导入的组件全类名
+     * 方法返回值就是要导入的组件全类名数组
      * AnnotationMetadata ：@import注解所在类的所有注解信息
      */
     @Override
