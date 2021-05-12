@@ -22,6 +22,7 @@ public class ScopeAnnotationTest {
      * 1、这里多次获取bean，始终返回的是同一个bean，即单例
      * 2、这里是恶汉式，IOC容器启动时就已经创建了这个单例的bean
      * 3、后面再每次获取这个bean，就是直接从容器取，类似map.get(key)
+     * 4、在不同的容器中，Bean的生命周期开始的时间不同。对于ApplicationContext来说，当容器启动的时候，bean就已经实例化了。而对于BeanFactory来说，直到调用getBean()方法的时候才进行实例化。
      */
     @Test
     public void test() {
