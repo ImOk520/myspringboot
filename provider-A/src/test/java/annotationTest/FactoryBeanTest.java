@@ -1,12 +1,7 @@
 package annotationTest;
 
 import cn.hutool.core.lang.Console;
-import fengge.DTO.CarDTO;
-import fengge.config.componentScan.TestConfig01;
-import fengge.config.factoryBean.BeanFactoryConfig;
-import fengge.config.scope.ScopeConfig_lazy;
-import fengge.config.scope.ScopeConfig_prototype;
-import fengge.config.scope.ScopeConfig_singleton;
+import config.beanLife.factoryBean.BeanFactoryConfig;
 import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;

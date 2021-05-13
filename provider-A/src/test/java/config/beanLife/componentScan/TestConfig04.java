@@ -1,9 +1,6 @@
-package fengge.config.componentScan;
+package config.beanLife.componentScan;
 
-import fengge.DTO.CarDTO;
-import fengge.DTO.PersonDTO;
 import fengge.dao.DeptDaoClass_Component;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.FilterType;
@@ -11,9 +8,9 @@ import org.springframework.context.annotation.FilterType;
 
 @Configuration
 @ComponentScan(value = "fengge.dao", includeFilters = {
-        @ComponentScan.Filter(type = FilterType.CUSTOM, classes = {MyFilterType.class})},
+        @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = {DeptDaoClass_Component.class})},
         useDefaultFilters = false
 )
-public class TestConfig05 {
+public class TestConfig04 {
 
 }

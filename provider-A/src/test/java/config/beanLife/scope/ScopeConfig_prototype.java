@@ -1,8 +1,7 @@
-package fengge.config.scope;
+package config.beanLife.scope;
 
 import cn.hutool.core.lang.Console;
 import fengge.DTO.CarDTO;
-import fengge.DTO.PersonDTO;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -18,12 +17,13 @@ import org.springframework.context.annotation.Scope;
  */
 @Configuration
 @ComponentScan(value = "fengge.dao")
-public class ScopeConfig_singleton {
+public class ScopeConfig_prototype {
 
-    @Scope
+    @Scope("prototype")
     @Bean
     public CarDTO carDTO(){
         Console.log("carDTO创建，并添加到容器");
         return new CarDTO(1,"BMW");
     }
+
 }

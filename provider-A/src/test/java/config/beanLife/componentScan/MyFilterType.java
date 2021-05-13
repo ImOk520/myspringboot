@@ -1,4 +1,4 @@
-package fengge.config.componentScan;
+package config.beanLife.componentScan;
 
 import org.springframework.core.io.Resource;
 import org.springframework.core.type.AnnotationMetadata;

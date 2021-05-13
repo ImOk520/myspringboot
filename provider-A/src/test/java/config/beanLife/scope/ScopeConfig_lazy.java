@@ -1,4 +1,4 @@
-package fengge.config.scope;
+package config.beanLife.scope;
 
 import cn.hutool.core.lang.Console;
 import fengge.DTO.CarDTO;

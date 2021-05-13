@@ -1,4 +1,4 @@
-package fengge.config.conditional;
+package config.beanLife.conditional;
 
 import fengge.DTO.CarDTO;
 import fengge.DTO.PersonDTO;

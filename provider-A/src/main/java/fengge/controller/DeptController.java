@@ -2,20 +2,19 @@ package fengge.controller;
 
 import cn.hutool.core.lang.Console;
 import fengge.DTO.CarDTO;
-import fengge.ProviderA;
-import fengge.config.conditional.ConditionalTestConfig02;
+import fengge.config.importAnnotation.A;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.WebApplicationContext;
 
 import java.util.Map;
+import java.util.stream.Stream;
 
 
 /**
- * Feng, Ge 2020-10-08 21:57
+ *
  */
 @RestController
 @RequestMapping("/dept")
@@ -29,8 +28,11 @@ public class DeptController implements ApplicationContextAware {
     }
 
     @GetMapping("/test")
-    public void test() {
-        Map<String, CarDTO> beans = context.getBeansOfType(CarDTO.class);
-        Console.log(beans);
+    public String[] test() {
+        String[] beanDefinitionNames = context.getBeanDefinitionNames();
+        Console.log(context.getBean("carDTO"));
+        Console.log(context.getApplicationName());
+        Stream.of(beanDefinitionNames).forEach(System.out::println);
+        return beanDefinitionNames;
     }
 }

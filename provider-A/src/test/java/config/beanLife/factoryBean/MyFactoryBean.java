@@ -1,4 +1,4 @@
-package fengge.config.factoryBean;
+package config.beanLife.factoryBean;
 
 import cn.hutool.core.lang.Console;
 import fengge.DTO.CarDTO;

@@ -1,4 +1,4 @@
-package fengge.config.beanLife.beanAnnotation;
+package config.beanLife.beanAnnotation;
 
 import cn.hutool.core.lang.Console;
 

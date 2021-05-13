@@ -1,4 +1,4 @@
-package fengge.config.beanLife.interfaceInit;
+package config.beanLife.interfaceInit;
 
 import cn.hutool.core.lang.Console;
 import org.springframework.beans.factory.DisposableBean;

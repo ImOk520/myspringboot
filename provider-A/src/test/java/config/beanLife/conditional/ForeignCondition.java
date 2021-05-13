@@ -1,19 +1,14 @@
-package fengge.config.conditional;
+package config.beanLife.conditional;
 
 import cn.hutool.core.lang.Console;
-import cn.hutool.core.util.ArrayUtil;
-import fengge.DTO.CarDTO;
-import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
-import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.context.annotation.Condition;
 import org.springframework.context.annotation.ConditionContext;
-import org.springframework.core.env.Environment;
 import org.springframework.core.type.AnnotatedTypeMetadata;
 
 /**
  * 实现Condition是个接口中的matches方法，返回true则注入bean，false则不注入。
  */
-public class MadeInChinaCondition implements Condition {
+public class ForeignCondition implements Condition {
 
     /**
      * AnnotatedTypeMetadata:注解所在位置的注释信息
@@ -23,7 +18,7 @@ public class MadeInChinaCondition implements Condition {
     public boolean matches(ConditionContext context, AnnotatedTypeMetadata metadata) {
         String type = context.getEnvironment().getProperty("car.type");
         Console.log("[type]" + type);
-        if ("madeInChina".equals(type)) {
+        if ("foreign".equals(type)) {
             Console.log("[type?]" + true);
             return true;
         }
