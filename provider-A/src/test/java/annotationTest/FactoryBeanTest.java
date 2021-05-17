@@ -1,7 +1,7 @@
 package annotationTest;
 
 import cn.hutool.core.lang.Console;
-import config.beanLife.factoryBean.BeanFactoryConfig;
+import config.factoryBean.BeanFactoryConfig;
 import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
