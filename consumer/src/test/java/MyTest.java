@@ -1,3 +1,6 @@
+import cn.hutool.core.date.DatePattern;
+import cn.hutool.core.date.DateTime;
+import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.lang.Console;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.json.JSONUtil;
@@ -253,7 +256,21 @@ public class MyTest {
         System.out.println(JSONObject.toJSONString(list));
     }
 
+    @Test
+    public void test10() {
+        // 当前时间
+        Calendar now = Calendar.getInstance();
+        now.setTime(new Date());
 
+        DateTime date = DateUtil.parse("2019-05-10", DatePattern.NORM_DATE_PATTERN);
+        Calendar birth = Calendar.getInstance();
+        birth.setTime(date);
 
+        int year = now.get(Calendar.YEAR) - birth.get(Calendar.YEAR);
+        if (now.get(Calendar.DAY_OF_YEAR) < birth.get(Calendar.DAY_OF_YEAR)) {
+            year -= 1;
+        }
+        Console.log("年齡:" + year);
+    }
 
 }

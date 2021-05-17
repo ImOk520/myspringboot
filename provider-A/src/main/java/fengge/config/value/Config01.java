@@ -7,7 +7,7 @@ import org.springframework.context.annotation.PropertySource;
 /**
  * Feng, Ge 2021/5/17 0017 9:02
  */
-@PropertySource(value = {"classpath:/application.yml"})
+//@PropertySource(value = {"classpath:/application.yml"})
 @Configuration
 public class Config01 {
 

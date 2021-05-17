@@ -43,6 +43,8 @@ public class ValueController implements ApplicationContextAware {
      */
     @GetMapping("/test1")
     public Person01 test1() {
+        String property = context.getEnvironment().getProperty("person.sex");
+        Console.log("重环境对象中获取的配置信息：" + property);
         Person01 person = context.getBean(Person01.class);
         Console.log(person);
         return person;

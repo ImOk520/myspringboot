@@ -34,5 +34,7 @@ public class ValueTest {
         ApplicationContext applicationContext = new AnnotationConfigApplicationContext(Config01.class);
         Person01 person01 = applicationContext.getBean(Person01.class);
         Console.log(person01);
+        String property = applicationContext.getEnvironment().getProperty("person.sex");
+        Console.log(property);
     }
 }
