@@ -29,3 +29,6 @@ spring:
 
 car:
   type: madeInChina
+
+person:
+  sex: 男
