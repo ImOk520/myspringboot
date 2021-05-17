@@ -22,6 +22,4 @@ public class Person implements InitializingBean, DisposableBean {
     public void destroy(){
         Console.log("销毁方法！");
     }
-
-
 }

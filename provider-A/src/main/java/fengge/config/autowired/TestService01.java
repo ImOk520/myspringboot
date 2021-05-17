@@ -1,8 +1,8 @@
 package fengge.config.autowired;
 
-import cn.hutool.core.lang.Console;
 import lombok.ToString;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 /**
@@ -10,9 +10,10 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @ToString
-public class TestService {
+public class TestService01 {
 
+    @Qualifier("testDAO02")
     @Autowired
-    private TestDAO testDAO02;
+    private TestDAO testDAO;
 
 }

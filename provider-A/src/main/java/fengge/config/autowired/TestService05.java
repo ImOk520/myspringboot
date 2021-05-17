@@ -1,6 +1,5 @@
 package fengge.config.autowired;
 
-import cn.hutool.core.lang.Console;
 import lombok.ToString;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,9 +9,12 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @ToString
-public class TestService {
+public class TestService05 {
+
+    private TestDAO testDAO;
 
     @Autowired
-    private TestDAO testDAO02;
-
+    public void setTestDAO(TestDAO testDAO) {
+        this.testDAO = testDAO;
+    }
 }
