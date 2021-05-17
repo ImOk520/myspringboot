@@ -10,10 +10,10 @@ import org.springframework.context.annotation.Primary;
 public class AutowiredConfig02 {
 
 //    @Primary
-    @Bean("testDAO02")
-    public TestDAO testDAO(){
-        TestDAO testDAO02 = new TestDAO();
-        testDAO02.setLabel(2);
-        return testDAO02;
-    }
+//    @Bean("testDAO02")
+//    public TestDAO testDAO(){
+//        TestDAO testDAO02 = new TestDAO();
+//        testDAO02.setLabel(2);
+//        return testDAO02;
+//    }
 }

@@ -12,8 +12,6 @@ import org.springframework.stereotype.Service;
 @ToString
 public class TestService02 {
 
-    @Qualifier("testDAO02")
     @Autowired
     private TestDAO testDAO;
-
 }
