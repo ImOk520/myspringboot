@@ -10,6 +10,7 @@ import config.beanLife.componentScan.TestConfig03;
 import config.beanLife.componentScan.TestConfig04;
 import config.beanLife.componentScan.TestConfig05;
 import config.beanLife.componentScan.TestConfig06;
+import fengge.beanPostProcessor.Config;
 import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
@@ -127,7 +128,8 @@ public class AnnotationTest {
 
     @Test
     public void test9() {
-
+        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(Config.class);
+        Console.log("容器创建完成！");
     }
 
 }
