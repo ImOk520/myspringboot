@@ -137,7 +137,6 @@ public class AnnotationTest {
     @Test
     public void test10() {
         ApplicationContext applicationContext = new AnnotationConfigApplicationContext(SelfConfig.class);
-        Console.log("容器创建完成！");
         Ship bean = applicationContext.getBean(Ship.class);
         Console.log(bean);
     }

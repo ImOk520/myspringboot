@@ -6,6 +6,7 @@ import fengge.DTO.CarDTO;
 import fengge.DTO.PersonDTO;
 import fengge.beanPostProcessor.Config;
 import fengge.config.autowired.*;
+import fengge.config.profile.ProfileConfig01;
 import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
@@ -119,5 +120,17 @@ public class AutowiredAnnotationTest {
         ApplicationContext applicationContext = new AnnotationConfigApplicationContext(AutowiredConfig04.class);
         TestService05 bean = applicationContext.getBean(TestService05.class);
         Console.log(bean);
+    }
+
+    @Test
+    public void test9() {
+        // 1.创建容器，这里只是创建容器，没有指定配置类，是为了先设置环境在载入bean
+        AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext();
+        // 2.设置环境标签
+        applicationContext.getEnvironment().setActiveProfiles("prod", "dev");
+        // 3.注册主配置类
+        applicationContext.register(ProfileConfig01.class);
+        // 4.刷新容器配置
+        applicationContext.refresh();
     }
 }
