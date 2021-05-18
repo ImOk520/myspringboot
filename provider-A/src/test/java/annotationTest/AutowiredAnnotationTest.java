@@ -89,35 +89,35 @@ public class AutowiredAnnotationTest {
         TestService02 bean = applicationContext.getBean(TestService02.class);
         Console.log(bean);
     }
-//
-//    /**
-//     *  @Resource 注解：和 @Autowired 注解 一样，只是它是JSR250提供的注解
-//     */
-//    @Test
-//    public void test6() {
-//        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(AutowiredConfig04.class);
-//        TestService03 bean = applicationContext.getBean(TestService03.class);
-//        Console.log(bean);
-//    }
-//
-//    /**
-//     *  @Resource 注解：和 @Autowired 注解 一样，只是它是JSR330提供的注解
-//     */
-//    @Test
-//    public void test7() {
-//        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(AutowiredConfig04.class);
-//        TestService04 bean = applicationContext.getBean(TestService04.class);
-//        Console.log(bean);
-//    }
-//
-//    /**
-//     *  @Autowired 注解 不仅可以注解在属性上，还可以注解在 方法、参数、构造方法上
-//     *  1、在哪里效果是一样的
-//     */
-//    @Test
-//    public void test8() {
-//        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(AutowiredConfig04.class);
-//        TestService05 bean = applicationContext.getBean(TestService05.class);
-//        Console.log(bean);
-//    }
+
+    /**
+     *  @Resource 注解：和 @Autowired 注解 一样，只是它是JSR250提供的注解
+     */
+    @Test
+    public void test6() {
+        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(AutowiredConfig04.class);
+        TestService03 bean = applicationContext.getBean(TestService03.class);
+        Console.log(bean);
+    }
+
+    /**
+     *  @Inject 注解：和 @Autowired 注解 一样，只是它是JSR330提供的注解
+     */
+    @Test
+    public void test7() {
+        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(AutowiredConfig04.class);
+        TestService04 bean = applicationContext.getBean(TestService04.class);
+        Console.log(bean);
+    }
+
+    /**
+     *  @Autowired 注解 不仅可以注解在属性上，还可以注解在 方法、参数、构造方法上
+     *  1、在哪里效果是一样的
+     */
+    @Test
+    public void test8() {
+        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(AutowiredConfig04.class);
+        TestService05 bean = applicationContext.getBean(TestService05.class);
+        Console.log(bean);
+    }
 }

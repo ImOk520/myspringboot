@@ -16,5 +16,4 @@ public class TestService03 {
 
     @Resource
     private TestDAO testDAO;
-
 }

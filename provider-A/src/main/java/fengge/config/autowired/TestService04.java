@@ -15,5 +15,4 @@ public class TestService04 {
 
     @Inject
     private TestDAO testDAO;
-
 }

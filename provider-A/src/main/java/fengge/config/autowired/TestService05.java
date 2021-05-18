@@ -13,7 +13,11 @@ public class TestService05 {
 
     private TestDAO testDAO;
 
-    @Autowired
+//    public TestService05(TestDAO testDAO) {
+//        this.testDAO = testDAO;
+//    }
+
+
     public void setTestDAO(TestDAO testDAO) {
         this.testDAO = testDAO;
     }

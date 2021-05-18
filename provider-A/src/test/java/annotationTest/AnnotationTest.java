@@ -11,6 +11,8 @@ import config.componentScan.TestConfig04;
 import config.componentScan.TestConfig05;
 import config.componentScan.TestConfig06;
 import fengge.beanPostProcessor.Config;
+import fengge.config.self.Ship;
+import fengge.config.self.SelfConfig;
 import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
@@ -130,6 +132,14 @@ public class AnnotationTest {
     public void test9() {
         ApplicationContext applicationContext = new AnnotationConfigApplicationContext(Config.class);
         Console.log("容器创建完成！");
+    }
+
+    @Test
+    public void test10() {
+        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(SelfConfig.class);
+        Console.log("容器创建完成！");
+        Ship bean = applicationContext.getBean(Ship.class);
+        Console.log(bean);
     }
 
 }
