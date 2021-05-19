@@ -7,9 +7,8 @@ import cn.hutool.core.lang.Console;
  */
 public class AopOne {
 
-    public double compute(double i, double j){
-        double v = i / j;
-        Console.log("商为：{}", v);
-        return v;
+    public void compute(int i, int j){
+        int v = i / j;
+        Console.log("目标类方法执行，商为：{}", v);
     }
 }
