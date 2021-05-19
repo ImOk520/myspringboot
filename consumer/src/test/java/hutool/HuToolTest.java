@@ -909,6 +909,14 @@ public class HuToolTest {
         Console.log(bmw);
     }
 
+    @ApiOperation("获取日期字符")
+    @Test
+    public void test55() {
+        Date date = new Date();
+        String format = DateUtil.format(date, DatePattern.PURE_DATE_FORMAT);
+        Console.log(format);
+    }
+
 
 
 
