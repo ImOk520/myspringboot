@@ -1,6 +1,7 @@
 package fengge.controller;
 
 import cn.hutool.core.lang.Console;
+import fengge.DTO.PersonDTO;
 import fengge.config.self.Ship;
 import fengge.config.value.Person01;
 import org.springframework.beans.BeansException;
@@ -53,5 +54,10 @@ public class DeptController implements ApplicationContextAware {
     public void test3() {
         String[] beanDefinitionNames = context.getBeanDefinitionNames();
         Stream.of(beanDefinitionNames).forEach(System.out::println);
+    }
+
+    @PostMapping("/test4")
+    public PersonDTO test4(@RequestBody PersonDTO personDTO) {
+        return personDTO;
     }
 }

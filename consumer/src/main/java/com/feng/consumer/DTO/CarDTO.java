@@ -18,4 +18,5 @@ public class CarDTO implements Serializable {
     private static final long serialVersionUID = -3245478690496182643L;
     private Integer id;
     private String brand;
+
 }

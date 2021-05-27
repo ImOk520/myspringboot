@@ -27,9 +27,9 @@ public class ConditionalTestConfig02 {
         return new CarDTO(1,"BMW");
     }
 
-    @Conditional({MadeInChinaCondition.class})
-    @Bean("PERSON")
-    public PersonDTO personDTO(){
-        return new PersonDTO(1,"OK");
-    }
+//    @Conditional({MadeInChinaCondition.class})
+//    @Bean("PERSON")
+//    public PersonDTO personDTO(){
+//        return new PersonDTO(1,"OK");
+//    }
 }

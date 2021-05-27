@@ -1,5 +1,6 @@
 package com.feng.consumer.controller;
 
+import com.feng.consumer.DTO.CarDTO;
 import com.feng.consumer.po.CarPO;
 import com.feng.consumer.util.RedisUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -27,5 +28,9 @@ public class RedisDemoController {
         redisUtil.set("car", carPO);
     }
 
+    @PostMapping("/test1")
+    public void test1() {
+        CarDTO carDTO = new CarDTO();
+    }
 
 }
