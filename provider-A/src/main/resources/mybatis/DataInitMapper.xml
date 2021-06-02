@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="fengge.mapper.DataInitMapper">
+
+    <select id="selectData" resultType="java.lang.String" parameterType="java.lang.String">
+        select `data` from tb_data_init where id = #{duid}
+    </select>
+
+    <select id="selectMedicalList" resultType="java.lang.String">
+        select `data` from tb_data_init
+        where type = 'MEDICAL'
+        <if test="queryString!=null and queryString!=''">
+            and description like CONCAT('%', #{queryString}, '%')
+        </if>
+        order BY sort;
+    </select>
+
+    <insert id="add" parameterType="fengge.DTO.TemplateMedicalEntity">
+        INSERT INTO tb_data_init
+        (`id`,
+        `description`,
+        `type`,
+        `sort`,
+        `data`)
+        VALUES
+        (#{item.id},
+        #{item.description},
+        #{item.type},
+        #{item.sort},
+        #{item.data})
+    </insert>
+
+</mapper>
