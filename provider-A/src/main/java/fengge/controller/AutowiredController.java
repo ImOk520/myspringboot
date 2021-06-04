@@ -47,4 +47,5 @@ public class AutowiredController implements ApplicationContextAware {
         Console.log(person);
         return person;
     }
+
 }
