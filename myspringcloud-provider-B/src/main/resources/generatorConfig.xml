@@ -37,7 +37,7 @@
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
         <!--生成对应表及类名-->
-        <table tableName="dept_bak" domainObjectName="DeptBak"
+        <table tableName="dept" domainObjectName="Dept"
                enableInsert="true"
                enableSelectByPrimaryKey="true"
                enableCountByExample="true"

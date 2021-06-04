@@ -1,18 +1,24 @@
 package feng.service;
 
-import com.feng.pojo.Dept;
+
+import feng.entity.Dept;
+import feng.entity.DeptExample;
+import feng.mapper.DeptMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-/**
- * Feng, Ge 2020-10-08 21:52
- */
-public interface DeptService {
+@Service
+public class DeptService {
 
-     boolean addDept(Dept dept);
+    @Autowired
+    private DeptMapper deptMapper;
 
-     Dept queryById(Long deptno);
-
-     List<Dept> queryAll();
-
-}
+    public List<Dept> list(){
+        DeptExample example = new DeptExample();
+        DeptExample.Criteria criteria = example.createCriteria();
+        criteria.andDnameLike("%2%");
+        return deptMapper.selectByExample(example);
+    }
+ }

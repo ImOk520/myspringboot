@@ -1,6 +1,6 @@
 package feng.entity;
 
-public class DeptBak {
+public class Dept {
     private Long deptno;
 
     private String dname;

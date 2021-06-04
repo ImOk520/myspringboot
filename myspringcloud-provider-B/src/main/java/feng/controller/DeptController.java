@@ -1,6 +1,6 @@
 package feng.controller;
 
-import com.feng.pojo.Dept;
+import feng.entity.Dept;
 import feng.service.DeptService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -17,18 +17,8 @@ public class DeptController {
     @Autowired
     private DeptService deptService;
 
-    @PostMapping("/add")
-    public boolean add(@RequestBody Dept dept){
-        return deptService.addDept(dept);
-    }
-
-    @GetMapping("/getById/{deptno}")
-    public Dept getById(@PathVariable("deptno") Long deptno){
-        return deptService.queryById(deptno);
-    }
-
-    @GetMapping("/getAll")
-    public List<Dept> getAll(){
-        return deptService.queryAll();
+    @GetMapping("/list")
+    public List<Dept> list(){
+        return deptService.list();
     }
 }

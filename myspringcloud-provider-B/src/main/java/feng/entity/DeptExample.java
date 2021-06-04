@@ -3,15 +3,15 @@ package feng.entity;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DeptBakExample {
+public class DeptExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public DeptBakExample() {
-        oredCriteria = new ArrayList<Criteria>();
+    public DeptExample() {
+        oredCriteria = new ArrayList<>();
     }
 
     public void setOrderByClause(String orderByClause) {
@@ -68,7 +68,7 @@ public class DeptBakExample {
 
         protected GeneratedCriteria() {
             super();
-            criteria = new ArrayList<Criterion>();
+            criteria = new ArrayList<>();
         }
 
         public boolean isValid() {
@@ -306,7 +306,6 @@ public class DeptBakExample {
     }
 
     public static class Criteria extends GeneratedCriteria {
-
         protected Criteria() {
             super();
         }
