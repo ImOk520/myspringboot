@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd"
+       default-autowire="byType">
+    <!--这个default-autowire作者测试的时候并不会影响到测试结果，我们后面分析-->
+    <bean id = "user" class="fengge.DTO.ignore.User"></bean>
+    <bean id = "role" class="fengge.DTO.ignore.Role"></bean>
+    <bean id = "admin" class="fengge.DTO.ignore.Admin"></bean>
+    <bean id="person" class="fengge.DTO.ignore.Person"></bean>
+</beans>
