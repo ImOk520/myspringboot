@@ -1,7 +1,6 @@
 package config.ignore;
 
 import config.ignore.Admin;
-import config.ignore.Config;
 import config.ignore.Person;
 import config.ignore.User;
 import config.ignore.UserAware;
