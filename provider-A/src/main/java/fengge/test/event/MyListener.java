@@ -11,6 +11,6 @@ public class MyListener implements ApplicationListener<MyEvent> {
 
     @Override
     public void onApplicationEvent(MyEvent event) {
-        Console.log("事件信息：{}", event);
+        Console.log("实现ApplicationListener接口监听到的事件信息：{}", event);
     }
 }

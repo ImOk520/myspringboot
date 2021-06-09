@@ -8,6 +8,6 @@ public class MyAnnotationListener {
 
     @EventListener
     public void onApplicationEvent(MyEvent event) {
-        Console.log("事件信息：{}", event);
+        Console.log("@EventListener注解监听到的事件信息：{}", event);
     }
 }
