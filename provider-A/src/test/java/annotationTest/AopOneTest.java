@@ -26,4 +26,11 @@ public class AopOneTest {
         AopOne bean = applicationContext.getBean(AopOne.class);
         bean.compute(10, 1);
     }
+
+    @Test
+    public void test2() {
+        AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(AopOneConfig.class);
+        AopOne bean = applicationContext.getBean(AopOne.class);
+        bean.compute(10, 1);
+    }
 }
