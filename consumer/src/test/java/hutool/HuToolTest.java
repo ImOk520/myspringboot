@@ -172,6 +172,10 @@ public class HuToolTest {
         System.out.println(year);
         System.out.println(month);
         System.out.println(monthEnum);
+        DateTime yesterday = DateUtil.yesterday();
+        Console.log(yesterday);
+        String formatYesterday = DateUtil.format(DateUtil.yesterday(), DatePattern.NORM_DATE_PATTERN);
+        Console.log(formatYesterday);
     }
 
     @ApiOperation("开始和结束时间")

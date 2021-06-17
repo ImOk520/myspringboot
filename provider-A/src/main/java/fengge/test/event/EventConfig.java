@@ -15,5 +15,4 @@ public class EventConfig {
     public MyAnnotationListener getMyAnnotationListener(){
         return new MyAnnotationListener();
     }
-
 }

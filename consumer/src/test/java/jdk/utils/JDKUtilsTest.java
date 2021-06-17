@@ -45,8 +45,26 @@ public class JDKUtilsTest {
         list2.add("a");
         list2.add("b");
         list2.add("d");
-        list1.retainAll(list2);
+        boolean b = list1.retainAll(list2);
         Console.log("集合取交集:{}",list1); // 输出[a, b]
+    }
+
+    /**
+     * addAll方法
+     *
+     */
+    @Test
+    public void test2(){
+        List<String> list1 = new ArrayList<>();
+        list1.add("a");
+        list1.add("b");
+        list1.add("c");
+        List<String> list2 = new ArrayList<>();
+        list2.add("a");
+        list2.add("b");
+        list2.add("d");
+        list1.addAll(list2);
+        Console.log("集合集:{}",list1); // 输出[a, b, c, a, b, d]
     }
 
 }

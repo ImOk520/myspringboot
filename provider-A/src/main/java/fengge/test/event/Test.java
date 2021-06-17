@@ -7,7 +7,7 @@ public class Test {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
         context.register(EventConfig.class);
         context.refresh();
-        MyEvent myEvent = new MyEvent(context, "呼叫土豆,呼叫土豆!");
+        MyEvent myEvent = new MyEvent(context, "我是事件!");
         context.publishEvent(myEvent);
     }
 }
