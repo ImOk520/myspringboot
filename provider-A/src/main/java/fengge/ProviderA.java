@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 //import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 import java.util.stream.Stream;
 
@@ -14,6 +15,7 @@ import java.util.stream.Stream;
  * Feng, Ge 2020-10-08 22:05
  */
 //@EnableEurekaClient
+@EnableScheduling
 @SpringBootApplication
 public class ProviderA {
     private static ApplicationContext applicationContext;
