@@ -12,9 +12,9 @@ import org.springframework.stereotype.Component;
 @Configuration // 这里使用@Component也行
 public class ScheduleTask {
 
-    //添加定时任务-- 5分钟执行一次
-    @Scheduled(fixedRate=5 * 1000)
-    private void updateTask(){
+    //添加定时任务-- 50分钟执行一次
+    @Scheduled(fixedRate = 50 * 60 * 1000)
+    private void updateTask() {
         Console.log("@Scheduled 注解实现定时任务 执行-------------------");
     }
 }
