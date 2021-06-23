@@ -921,6 +921,18 @@ public class HuToolTest {
         Console.log(format);
     }
 
+    @ApiOperation("时间")
+    @Test
+    public void test56() {
+        TimeInterval timer = DateUtil.timer();
+        // 模拟对应的执行过程
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println(timer.interval());
+    }
 
 
 
