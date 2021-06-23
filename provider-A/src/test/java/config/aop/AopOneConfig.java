@@ -1,11 +1,7 @@
 package config.aop;
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Conditional;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import org.springframework.context.annotation.*;
 
 @EnableAspectJAutoProxy
 @Configuration
@@ -22,3 +18,44 @@ public class AopOneConfig {
         return new AopOneAspect();
     }
 }
+
+
+//package config.aop;
+//
+//import fengge.config.importAnnotation.A;
+//import fengge.config.importAnnotation.B;
+//import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
+//import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
+//import org.springframework.context.annotation.*;
+//import org.springframework.stereotype.Component;
+//
+//@EnableAspectJAutoProxy
+//@Configuration
+//@PropertySource(value = "classpath:user.properties", encoding = "UTF-8")
+//@ComponentScan(value = "fengge.dao")
+//@ImportResource("classpath:demo.xml")
+//@Import({A.class, B.class})
+//public class AopOneConfig implements DemoInterface{
+//
+//    @Bean
+//    public AopOne aopOne() {
+//        return new AopOne();
+//    }
+//
+//    @Bean
+//    @ConditionalOnBean(name = "aopOne") // 如果aopOne存在才实例化AopOneAspect
+//    public AopOneAspect oneAspect() {
+//        return new AopOneAspect();
+//    }
+
+//    @Override
+//    public String selectData() {
+//        return "ok";
+//    }
+//
+//    @Component
+//    class InnerClass{
+//
+//    }
+//}
+

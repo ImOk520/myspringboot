@@ -1,5 +1,6 @@
 package annotationTest;
 
+import fengge.config.importAnnotation.ImportTestConfig01;
 import fengge.config.importAnnotation.ImportTestConfig02;
 import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -17,7 +18,7 @@ public class ImportAnnotationTest {
 
     @Test
     public void test() {
-        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(ImportTestConfig02.class);
+        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(ImportTestConfig01.class);
         String[] beanDefinitionNames = applicationContext.getBeanDefinitionNames();
         Stream.of(beanDefinitionNames).forEach(System.out::println);
     }
