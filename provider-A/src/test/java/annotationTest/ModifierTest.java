@@ -12,6 +12,7 @@ public class ModifierTest {
 
     @Test
     public void testModifier(){
+        // 如果整数参数包含 {@code static} 修饰符，则返回 {@code true}，否则返回 {@code false}。
         Console.log("【1】" + Modifier.isStatic(8));
         Console.log("【2】" + Modifier.ABSTRACT);
         Console.log("【3】" + Modifier.STRICT);

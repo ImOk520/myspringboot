@@ -5,6 +5,7 @@ import config.aop.AopOne;
 import config.aop.AopOneConfig;
 
 import org.junit.Test;
+import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -32,5 +33,13 @@ public class AopOneTest {
         AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(AopOneConfig.class);
         AopOne bean = applicationContext.getBean(AopOne.class);
         bean.compute(10, 1);
+    }
+
+    @Test
+    public void test3() {
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AopOneConfig.class);
+        BeanDefinition aopOneConfig = context.getBeanDefinition("aopOneConfig");
+        Console.log("【1】" + aopOneConfig);
+        Console.log("【2】" + aopOneConfig.getFactoryMethodName());
     }
 }

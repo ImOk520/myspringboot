@@ -1,5 +1,6 @@
 package config.aop;
 
+import fengge.config.importAnnotation.A;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.context.annotation.*;
 
@@ -13,8 +14,13 @@ public class AopOneConfig {
     }
 
     @Bean
-    @ConditionalOnBean(name = "aopOne") // 如果aopOne存在才实例化AopOneAspect
-    public AopOneAspect oneAspect() {
+    public Demo demo() {
+        return new Demo("1", 6);
+    }
+
+    @Bean
+//    @ConditionalOnBean(name = "aopOne") // 如果aopOne存在才实例化AopOneAspect
+    public AopOneAspect aopOneAspect() {
         return new AopOneAspect();
     }
 }
