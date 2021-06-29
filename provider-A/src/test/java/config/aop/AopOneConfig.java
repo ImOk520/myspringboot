@@ -1,6 +1,8 @@
 package config.aop;
 
 import fengge.config.importAnnotation.A;
+import org.springframework.beans.factory.annotation.Autowire;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.context.annotation.*;
 
@@ -15,7 +17,7 @@ public class AopOneConfig {
 
     @Bean
     public Demo demo() {
-        return new Demo("1", 6);
+        return new Demo();
     }
 
     @Bean

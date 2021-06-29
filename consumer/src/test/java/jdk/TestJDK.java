@@ -4,12 +4,8 @@ import cn.hutool.core.lang.Console;
 import jdk.common.bean.Jim;
 import jdk.common.bean.Person;
 import org.junit.Test;
-import tests.lambda.StreamAPI;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import java.lang.reflect.Field;
 
 /**
  * Feng, Ge 2021/6/28 0028 10:53
@@ -96,5 +92,24 @@ public class TestJDK {
         String args[] = new String[0];
         Person.main(args);
     }
+
+    @Test
+    public void test9() {
+        String s = "abcd";
+        System.out.println("s = " + s);
+        Field valueField = null;
+        try {
+            valueField = String.class.getDeclaredField("value");
+            valueField.setAccessible(true);
+
+            char[] value = (char[]) valueField.get(s);
+
+            value[3] = 'e';
+            System.out.println("s = " + s);
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 }
