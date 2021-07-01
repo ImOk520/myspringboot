@@ -1,5 +1,6 @@
 package config.aop;
 
+import config.beanAnnotation.Person;
 import fengge.config.importAnnotation.A;
 import org.springframework.beans.factory.annotation.Autowire;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +16,9 @@ public class AopOneConfig {
         return new AopOne();
     }
 
-    @Bean
-    public Demo demo() {
-        return new Demo();
+    @Bean(initMethod = "init", destroyMethod = "destroy")
+    public Person person() {
+        return new Person();
     }
 
     @Bean

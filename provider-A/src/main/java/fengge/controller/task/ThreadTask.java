@@ -4,7 +4,7 @@ package fengge.controller.task;
  * 使用线程创建定时任务
  * Feng, Ge 2021/6/18 0018 15:16
  */
-public class ThreadTask {
+class Task {
 
     public static class Demo01 {
         static long count = 0;

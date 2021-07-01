@@ -1,26 +1,15 @@
-package config.beanAnnotation;
+package config.beanAnnotation.initpa;
 
 import cn.hutool.core.lang.Console;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 
-/**
- * Feng, Ge 2021/5/12 0012 18:08
- */
-public class Person implements BeanPostProcessor {
-
-    public Person() {
-        Console.log("构造方法！");
-    }
-
-    public void init(){
-        Console.log("初始化方法！");
-    }
-
-    public void destroy(){
-        Console.log("销毁方法！");
-    }
-
+public class MyBeanPostProcessor implements BeanPostProcessor {
+    /**
+     * @param bean the new bean instance
+     * @param beanName the name of the bean
+     * @return the bean instance to use, either the original or a wrapped one;
+     */
     @Override
     public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
         Console.log("postProcessBeforeInitialization 在初始化方法前执行" + beanName + "###" + bean);
