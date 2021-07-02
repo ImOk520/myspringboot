@@ -349,10 +349,12 @@ public class HuToolTest {
     public void test21() {
         Integer[] a = {1, 2, 3, 4, 5, 6};
         Integer[] filter = ArrayUtil.filter(a, new Editor<Integer>() {
+
             @Override
             public Integer edit(Integer t) {
                 return (t % 2 == 0) ? t : null;
             }
+
         });
         Assert.assertArrayEquals(filter, new Integer[]{2, 4, 6});
         Console.log(filter);

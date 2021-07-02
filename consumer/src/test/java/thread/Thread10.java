@@ -23,48 +23,18 @@ import cn.hutool.core.lang.Console;
  * InheritableThreadLocal类与ThreadLocal类稍有不同，Inheritable是继承的意思。
  * 它不仅仅是当前线程可以存取副本值，⽽且它的⼦线程也可以存取这个副本值。
  */
-public class Thread09 {
+public class Thread10 {
 
-    static class ThreadA implements Runnable {
-        private ThreadLocal<String> threadLocal;
-        public ThreadA(ThreadLocal<String> threadLocal) {
-            this.threadLocal = threadLocal;
-        }
-        @Override
-        public void run() {
-            threadLocal.set("A");
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            System.out.println("ThreadA输出：" + threadLocal.get());
-        }
-
-        static class ThreadB implements Runnable {
-            private ThreadLocal<String> threadLocal;
-            public ThreadB(ThreadLocal<String> threadLocal) {
-                this.threadLocal = threadLocal;
-            }
+    public static void main(String[] args) {
+        final ThreadLocal threadLocal = new InheritableThreadLocal();
+        threadLocal.set("我是主线程set到threadLocal中的值。");
+        Thread t = new Thread() {
             @Override
             public void run() {
-                threadLocal.set("B");
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                System.out.println("ThreadB输出：" + threadLocal.get());
+                super.run();
+               Console.log( "【我是非主线程，从主线程中的threadLocal中取值】：" + threadLocal.get());
             }
-        }
-
-
-        public static void main(String[] args) {
-            ThreadLocal<String> threadLocal = new ThreadLocal<>();
-            // 两个线程使用同一个threadLocal
-            new Thread(new ThreadA(threadLocal)).start();
-            new Thread(new ThreadB(threadLocal)).start();
-            Console.log(threadLocal.toString());
-        }
+        };
+        t.start();
     }
 }
