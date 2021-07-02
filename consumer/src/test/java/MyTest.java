@@ -273,4 +273,15 @@ public class MyTest {
         Console.log("年齡:" + year);
     }
 
+    @Test
+    public void test11() {
+        String s = "a<tr>aava </tr>abb ";
+        // （占有型）：完全匹配,只有一模一样才能匹配上
+        String reg = "<.++>";
+        String reg1 = "<tr>aava </tr>";
+        System.out.println(s.replaceAll(reg, "###"));
+        System.out.println(s.replaceAll(reg1, "###"));
+    }
+
+
 }
