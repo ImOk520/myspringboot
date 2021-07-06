@@ -26,7 +26,7 @@ import java.util.stream.Stream;
  * （2）Terminal（终止操作）：
  * 一个流只能有一个 terminal 操作，当这个操作执行后，流就被使用“光”了，无法再被操作。
  * 所以这必定是流的最后一个操作。Terminal 操作的执行，才会真正开始流的遍历，并且会生成一个结果，或者一个 side effect。
- * forEach、 forEachOrdered、 toArray、 reduce、 collect、 min、 max、 count、 anyMatch、 allMatch、 noneMatch、 findFirst、 findAny、 iterator
+ * forEach、 forEachOrdered、 toArray、 reduce、 collect、 min、 max、 count、 anyMatch、 allMatch、 noneMatch、 findFirst、 findAny、
  * <p>
  * （3）short-circuiting（短路操作）。
  * 用以指：
