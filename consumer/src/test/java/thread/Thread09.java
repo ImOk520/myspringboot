@@ -25,21 +25,21 @@ import cn.hutool.core.lang.Console;
  */
 public class Thread09 {
 
-    static class ThreadA implements Runnable {
-        private ThreadLocal<String> threadLocal;
-        public ThreadA(ThreadLocal<String> threadLocal) {
-            this.threadLocal = threadLocal;
-        }
-        @Override
-        public void run() {
-            threadLocal.set("A");
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+        static class ThreadA implements Runnable {
+            private ThreadLocal<String> threadLocal;
+            public ThreadA(ThreadLocal<String> threadLocal) {
+                this.threadLocal = threadLocal;
             }
-            System.out.println("ThreadA输出：" + threadLocal.get());
-        }
+            @Override
+            public void run() {
+                threadLocal.set("A");
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                System.out.println("ThreadA输出：" + threadLocal.get());
+            }
 
         static class ThreadB implements Runnable {
             private ThreadLocal<String> threadLocal;
