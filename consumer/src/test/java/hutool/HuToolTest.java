@@ -23,6 +23,7 @@ import cn.hutool.core.util.IdcardUtil;
 import cn.hutool.core.util.NumberUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.RandomUtil;
+import cn.hutool.core.util.ReUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.http.HttpUtil;
 import cn.hutool.json.JSONObject;
@@ -936,7 +937,21 @@ public class HuToolTest {
         System.out.println(timer.interval());
     }
 
+    @ApiOperation("正则表达式")
+    @Test
+    public void test57() {
+        String content = "632123198209270517";
+        Console.log(content.length());
 
+        // 身份证号
+//        String regex = "^[1-9]\\d{7}((0\\d)|(1[0-2]))(([0|1|2]\\d)|3[0-1])\\d{3}$|^[1-9]\\d{5}[1-9]\\d{3}((0\\d)|(1[0-2]))(([0|1|2]\\d)|3[0-1])\\d{3}([0-9]|X)$";
+        String regex_18 = "^([1-6][1-9]|50)\\d{4}(18|19|20)\\d{2}((0[1-9])|10|11|12)(([0-2][1-9])|10|20|30|31)\\d{3}[0-9Xx]$";
+        String regex_15 = "^([1-6][1-9]|50)\\d{4}\\d{2}((0[1-9])|10|11|12)(([0-2][1-9])|10|20|30|31)\\d{3}$";
+        boolean isMatch_18 = ReUtil.isMatch(regex_18, "632123198209270517");
+        boolean isMatch_15 = ReUtil.isMatch(regex_15, "632123820927051");
+        Console.log(isMatch_18);
+        Console.log(isMatch_15);
+    }
 
 
 
