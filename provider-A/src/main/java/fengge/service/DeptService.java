@@ -11,6 +11,6 @@ import java.util.List;
 @Service
 public interface DeptService {
 
-
+    void update(Long deptno);
 
 }

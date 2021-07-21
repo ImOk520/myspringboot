@@ -23,4 +23,6 @@ public interface DataInitMapper {
     List<String> selectMedicalList(@Param("queryString") String queryString);
 
     int add( @Param("item") DataEntity item);
+
+    int update ();
 }

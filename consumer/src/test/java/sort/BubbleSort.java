@@ -17,18 +17,17 @@ public class BubbleSort {
     private static void sort(int[] arr) {
         for (int i = 1; i < arr.length; i++) {
             Console.log("第" + i + "趟");
-            for (int j=0; j<arr.length - i; j++) {
-                if(arr[j] > arr[j+1]){
-                   int temp = arr[j];
-                   arr[j] = arr[j+1];
-                   arr[j+1] = temp;
+            for (int j = 0; j < arr.length - i; j++) {
+                if (arr[j] > arr[j + 1]) {
+                    int temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
                 }
             }
         }
     }
 
     /**
-     *
      * 冒泡排序优化，减少趟数
      */
     private static void enhancedSort(int[] arr) {
@@ -36,15 +35,15 @@ public class BubbleSort {
         for (int i = 1; i < arr.length; i++) {
             Console.log("第" + i + "趟");
             breakFlag = true;
-            for (int j=0; j<arr.length - i; j++) {
-                if(arr[j] > arr[j+1]){
+            for (int j = 0; j < arr.length - i; j++) {
+                if (arr[j] > arr[j + 1]) {
                     int temp = arr[j];
-                    arr[j] = arr[j+1];
-                    arr[j+1] = temp;
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
                     breakFlag = false;
                 }
             }
-            if(breakFlag){
+            if (breakFlag) {
                 Console.log("第" + i + "趟break");
                 break;
             }

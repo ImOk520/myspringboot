@@ -15,4 +15,6 @@ public interface DeptService {
 
      List<Dept> queryAll();
 
+     void update(Long deptno);
+
 }

@@ -12,6 +12,18 @@
     </select>
 
     <select id="queryAll" resultType="com.feng.pojo.Dept">
-        select * from dept;
+        select * from dept_bak;
     </select>
+
+    <update id="update">
+        update dept_bak
+        set dname = "更新0"
+        where deptno = #{deptno}
+    </update>
+
+    <update id="update1">
+        update dept_bak
+        set dname = "更新1"
+        where deptno = #{deptno}
+    </update>
 </mapper>

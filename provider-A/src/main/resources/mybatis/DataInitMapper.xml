@@ -30,4 +30,10 @@
         #{item.data})
     </insert>
 
+    <update id="update">
+        update tb_data_init
+        set description = "更新6666"
+        where id = "1"
+    </update>
+
 </mapper>

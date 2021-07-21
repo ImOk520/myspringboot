@@ -1,27 +1,23 @@
-package fengge.service;
+package feng.service;
 
-import com.feng.pojo.Dept;
-import fengge.dao.DeptDao;
-import lombok.extern.slf4j.Slf4j;
+import feng.dao.DataInitDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-
 /**
- * Feng, Ge 2020-10-08 21:52
+ * Feng, Ge 2021/7/15 0015 14:18
  */
-@Slf4j
 @Service
-public class DeptServiceIml implements DeptService {
+public class EmployeeServiceIml implements EmployeeService {
 
     @Autowired
-    private DeptDao deptDao;
+    private DataInitDao dataInitDao;
 
     @Transactional(propagation = Propagation.NESTED)
-    public void update(Long deptno) {
-        deptDao.update(deptno);
+    public void update() {
+        dataInitDao.update();
+        int i = 10/0;
     }
 }
