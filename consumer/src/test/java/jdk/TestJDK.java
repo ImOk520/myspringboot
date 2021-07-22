@@ -6,6 +6,8 @@ import jdk.common.bean.Person;
 import org.junit.Test;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Feng, Ge 2021/6/28 0028 10:53
@@ -109,6 +111,18 @@ public class TestJDK {
         } catch (NoSuchFieldException | IllegalAccessException e) {
             e.printStackTrace();
         }
+    }
+
+    @Test
+    public void test10() {
+        List<String> list = new ArrayList<>();
+        list.add("6");
+        list.add("5");
+        list.add("18");
+        list.add("86");
+        Console.log(list);
+        list.add(0,"0000000");
+        Console.log(list);
     }
 
 }
