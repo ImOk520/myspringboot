@@ -5,6 +5,7 @@ import com.feng.pojo.Dept;
 import fengge.DTO.DeptDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,5 +23,10 @@ import java.util.List;
 @Slf4j
 @RequestMapping("/test")
 public class TestController {
+
+    @GetMapping("/test1")
+    public String test1 () {
+        return "okokok";
+    }
 
 }
