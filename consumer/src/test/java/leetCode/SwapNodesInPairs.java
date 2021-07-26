@@ -11,6 +11,8 @@ import cn.hutool.core.lang.Console;
  * 示例：
  * 输入：head = [1,2,3,4]
  * 输出：[2,1,4,3]
+ *
+ * https://leetcode-cn.com/problems/swap-nodes-in-pairs/
  */
 public class SwapNodesInPairs {
 
