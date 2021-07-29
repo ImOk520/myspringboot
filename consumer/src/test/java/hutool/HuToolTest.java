@@ -953,6 +953,19 @@ public class HuToolTest {
         Console.log(isMatch_15);
     }
 
+//    private boolean isValid(String cardNo) {
+//        String regex = null;
+//        if (cardNo.length() != 18 && cardNo.length() != 15) {
+//            return false;
+//        }
+//        if (cardNo.length() == 18) {
+//            regex = CheckCodeConstants.CARD_NO_18_REGEX;
+//        }
+//        if (cardNo.length() == 15) {
+//            regex = CheckCodeConstants.CARD_NO_15_REGEX;
+//        }
+//        return ReUtil.isMatch(regex, cardNo);
+//    }
 
 
 }
