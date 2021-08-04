@@ -12,8 +12,8 @@ public class ClassLoaderTest {
             Console.log("【2】{}", contextClassLoader);
             ClassLoader parent = ClassLoader.getSystemClassLoader().getParent();
             Console.log("【3】{}", parent);
-
-        } catch (ClassNotFoundException e) {
+            Thread.sleep(100000000);
+        } catch (ClassNotFoundException | InterruptedException e) {
             e.printStackTrace();
         }
     }
